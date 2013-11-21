@@ -8,6 +8,7 @@ bower_components
 app/components
 components
 reports/
+build
 *.log
 [Bb]in
 [Oo]bj
