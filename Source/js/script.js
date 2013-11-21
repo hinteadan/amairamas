@@ -1,4 +1,5 @@
 (function ($, moment) {
+    'use strict';
 
     var counterJq = $('.counter'),
         endDate = moment('23-11-2013 12:30:00', 'DD-MM-YYYY HH:mm:ss'),
@@ -7,7 +8,7 @@
     function pad(v, desiredLength) {
         var length = desiredLength || 2,
             paddedValue = String(v);
-        while (paddedValue.length < desiredLength) {
+        while (paddedValue.length < length) {
             paddedValue = '0' + paddedValue;
         }
         return paddedValue;
