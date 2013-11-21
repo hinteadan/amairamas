@@ -225,6 +225,12 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
+                        dest: 'build/',
+                        cwd: 'components/bootstrap/dist/',
+                        src: ['fonts/*']
+                    },
+                    {
+                        expand: true,
                         cwd: '.tmp/img',
                         dest: 'build/img',
                         src: [
