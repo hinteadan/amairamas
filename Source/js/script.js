@@ -2,7 +2,7 @@
     'use strict';
 
     var counterJq = $('.counter'),
-        endDate = moment("23-11-2013 12:30:00", "DD-MM-YYYY HH:mm:ss"),
+        endDate = moment("24-12-2013 19:30:00", "DD-MM-YYYY HH:mm:ss"),
         resolution = 100;
 
     function pad(v, desiredLength) {
