@@ -7,8 +7,7 @@
     },
         operator = {
             EqualTo: { id: 0, value: 'Equals' }
-        },
-        is = operator;
+        };
 
     function Query(chainWith) {
 
@@ -22,7 +21,7 @@
             this.value = value;
             this.toString = function () {
                 return name + '=' + operator.value + ':' + value;
-            }
+            };
         }
 
         function addParameter(name) {
@@ -30,8 +29,8 @@
                 return function (value) {
                     parameters.push(new Parameter(name, operator, value));
                     return self;
-                }
-            }
+                };
+            };
         }
 
         function convertToQueryString() {
@@ -85,7 +84,7 @@
 
         function loadEntity(id, callback) {
             doHttpRequest(storeUrl + id, 'GET', undefined,
-                function (entityData, textStatus, jqXHR) {
+                function (entityData) {
                     var entity = new Entity(entityData.Data, entityData.Meta);
                     entity.Id = entityData.Id;
                     doCallback(callback, [new OperationResult(true, null, entity)]);
@@ -98,7 +97,7 @@
         function saveEntity(entity, callback) {
             /// <param name='entity' type='Entity' />
             doHttpRequest(storeUrl, 'PUT', entity,
-                function (id, textStatus, jqXHR) {
+                function (id) {
                     entity.Id = id;
                     doCallback(callback, [new OperationResult(true, null, entity)]);
                 },
@@ -109,7 +108,7 @@
 
         function queryMetaData(query, callback) {
             doHttpRequest(storeUrl + 'meta?' + query, 'GET', undefined,
-                function (queryResult, textStatus, jqXHR) {
+                function (queryResult) {
                     doCallback(callback, [new OperationResult(true, null, queryResult)]);
                 },
                 function (jqXHR, textStatus, errorThrown) {
@@ -119,7 +118,7 @@
 
         function queryData(query, callback) {
             doHttpRequest(storeUrl + '?' + query, 'GET', undefined,
-                function (queryResult, textStatus, jqXHR) {
+                function (queryResult) {
                     doCallback(callback, [new OperationResult(true, null, queryResult)]);
                 },
                 function (jqXHR, textStatus, errorThrown) {

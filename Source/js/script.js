@@ -1,8 +1,8 @@
-(function ($, moment) {
+(function ($, moment, ds) {
     'use strict';
 
     var counterJq = $('.counter'),
-        endDate = moment("24-12-2013 19:30:00", "DD-MM-YYYY HH:mm:ss"),
+        endDate = moment('24-12-2013 19:30:00', 'DD-MM-YYYY HH:mm:ss'),
         resolution = 100;
 
     function pad(v, desiredLength) {
@@ -38,9 +38,9 @@
 
     updateCounterAndQueueAnother();
 
-    var dataStore = new DataStore.Store();
+    var dataStore = new ds.Store();
     $('#ButtonSave').click(function () {
-        dataStore.Save(new DataStore.Entity({ Name: 'Danish' }, { Name: 'Danish', Username: 'dan.hintea' }));
+        dataStore.Save(new ds.Entity({ Name: 'Danish' }, { Name: 'Danish', Username: 'dan.hintea' }));
     });
     $('#ButtonQueryMeta').click(function () {
         dataStore.QueryMeta(new ds.Query().where('Name')(ds.is.EqualTo)('Danish'));
@@ -55,4 +55,4 @@
         dataStore.Load('b71aff3c-7911-42fe-9757-64cc951ba4bd');
     });
 
-})(this.$, this.moment);
+})(this.$, this.moment, this.DataStore);
