@@ -38,4 +38,12 @@
 
     updateCounterAndQueueAnother();
 
+    var dataStore = new DataStore.Store();
+    $('#ButtonSave').click(function () {
+        dataStore.Save(new DataStore.Entity({ Name: 'Danish' }, { Name: 'Danish', Username: 'dan.hintea' }));
+    });
+    $('#ButtonQueryMeta').click(function () {
+        dataStore.QueryMeta();
+    });
+
 })(this.$, this.moment);
