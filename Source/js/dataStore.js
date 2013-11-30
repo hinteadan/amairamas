@@ -2,11 +2,18 @@
     'use strict';
 
     var chainOperation = {
-        And: { id: 0, value: 'And' },
-        Or: { id: 1, value: 'Or' }
-    },
+            And: { id: 0, value: 'And' },
+            Or: { id: 1, value: 'Or' }
+        },
         operator = {
-            EqualTo: { id: 0, value: 'Equals' }
+            EqualTo: { id: 0, value: 'Equals' },
+            LowerThan: { id: 1, value: 'LowerThan' },
+            LowerThanOrEqualTo: { id: 2, value: 'LowerThanOrEqual' },
+            HigherThan: { id: 3, value: 'HigherThan' },
+            HigherThanOrEqualTo: { id: 4, value: 'HigherThanOrEqual' },
+            Containing: { id: 5, value: 'Contains' },
+            BeginningWith: { id: 6, value: 'BeginsWith' },
+            EndingWith: { id: 7, value: 'EndsWith' }
         };
 
     function Query(chainWith) {
