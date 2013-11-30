@@ -39,39 +39,49 @@
             });
         }
 
+        function doCallback(callback, argsArray) {
+            if (typeof (callback) !== 'function') {
+                return;
+            }
+            callback.apply(null, argsArray);
+        }
+
         function saveEntity(entity, callback) {
             /// <param name='entity' type='Entity' />
             doHttpRequest(storeUrl, 'PUT', entity,
                 function (id, textStatus, jqXHR) {
                     entity.Id = id;
-                    if (callback) {
-                        callback.call(null, new OperationResult(true, null, entity));
-                    }
+                    doCallback(callback, [new OperationResult(true, null, entity)]);
                 },
                 function (jqXHR, textStatus, errorThrown) {
-                    if (callback) {
-                        callback.call(null, new OperationResult(false, errorThrown));
-                    }
+                    doCallback(callback, [new OperationResult(false, errorThrown)]);
                 });
         }
 
         function queryMetaData(chainWith, callback) {
             var chain = chainWith || chainOperation.And;
-            doHttpRequest(storeUrl + 'meta?chainWith=' + chain.value + '&', 'GET', undefined,
+            doHttpRequest(storeUrl + 'meta?chainWith=' + chain.value, 'GET', undefined,
                 function (queryResult, textStatus, jqXHR) {
-                    if (callback) {
-                        callback.call(null, new OperationResult(true, null, queryResult));
-                    }
+                    doCallback(callback, [new OperationResult(true, null, queryResult)]);
                 },
                 function (jqXHR, textStatus, errorThrown) {
-                    if (callback) {
-                        callback.call(null, new OperationResult(false, errorThrown));
-                    }
+                    doCallback(callback, [new OperationResult(false, errorThrown)]);
+                });
+        }
+
+        function deleteEntity(id, callback) {
+            doHttpRequest(storeUrl + id, 'DELETE', undefined,
+                function () {
+                    doCallback(callback, [new OperationResult(true, null, undefined)]);
+                },
+                function (jqXHR, textStatus, errorThrown) {
+                    doCallback(callback, [new OperationResult(false, errorThrown)]);
                 });
         }
 
         this.Save = saveEntity;
         this.QueryMeta = queryMetaData;
+        this.Delete = deleteEntity;
     }
 
     this.DataStore = {

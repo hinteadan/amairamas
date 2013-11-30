@@ -45,5 +45,8 @@
     $('#ButtonQueryMeta').click(function () {
         dataStore.QueryMeta();
     });
+    $('#ButtonDelete').click(function () {
+        dataStore.Delete('a2b0312e-0e0c-4628-97f8-15405e8c849d');
+    });
 
 })(this.$, this.moment);
