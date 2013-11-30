@@ -46,6 +46,18 @@
             callback.apply(null, argsArray);
         }
 
+        function loadEntity(id, callback) {
+            doHttpRequest(storeUrl + id, 'GET', undefined,
+                function (entityData, textStatus, jqXHR) {
+                    var entity = new Entity(entityData.Data, entityData.Meta);
+                    entity.Id = entityData.Id;
+                    doCallback(callback, [new OperationResult(true, null, entity)]);
+                },
+                function (jqXHR, textStatus, errorThrown) {
+                    doCallback(callback, [new OperationResult(false, errorThrown)]);
+                });
+        }
+
         function saveEntity(entity, callback) {
             /// <param name='entity' type='Entity' />
             doHttpRequest(storeUrl, 'PUT', entity,
@@ -80,6 +92,7 @@
         }
 
         this.Save = saveEntity;
+        this.Load = loadEntity;
         this.QueryMeta = queryMetaData;
         this.Delete = deleteEntity;
     }
