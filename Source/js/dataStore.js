@@ -81,6 +81,17 @@
                 });
         }
 
+        function queryData(chainWith, callback) {
+            var chain = chainWith || chainOperation.And;
+            doHttpRequest(storeUrl + '?chainWith=' + chain.value, 'GET', undefined,
+                function (queryResult, textStatus, jqXHR) {
+                    doCallback(callback, [new OperationResult(true, null, queryResult)]);
+                },
+                function (jqXHR, textStatus, errorThrown) {
+                    doCallback(callback, [new OperationResult(false, errorThrown)]);
+                });
+        }
+
         function deleteEntity(id, callback) {
             doHttpRequest(storeUrl + id, 'DELETE', undefined,
                 function () {
@@ -94,6 +105,7 @@
         this.Save = saveEntity;
         this.Load = loadEntity;
         this.QueryMeta = queryMetaData;
+        this.Query = queryData;
         this.Delete = deleteEntity;
     }
 
