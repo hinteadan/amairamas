@@ -1,13 +1,50 @@
-﻿(function ($, undefined) {
+﻿(function ($, _, undefined) {
     'use strict';
 
     var chainOperation = {
-            And: { id: 0, value: 'And' },
-            Or: { id: 1, value: 'Or' }
-        },
+        And: { id: 0, value: 'And' },
+        Or: { id: 1, value: 'Or' }
+    },
         operator = {
-            Equal: { id: 0, value: 'Equals' }
-        };
+            EqualTo: { id: 0, value: 'Equals' }
+        },
+        is = operator;
+
+    function Query(chainWith) {
+
+        var self = this,
+            chain = chainWith || chainOperation.And,
+            parameters = [];
+
+        function Parameter(name, operator, value){
+            this.name = name;
+            this.operator = operator;
+            this.value = value;
+            this.toString = function () {
+                return name + '=' + operator.value + ':' + value;
+            }
+        }
+
+        function addParameter(name) {
+            return function (operator) {
+                return function (value) {
+                    parameters.push(new Parameter(name, operator, value));
+                    return self;
+                }
+            }
+        }
+
+        function convertToQueryString() {
+            return 'chainWith=' + chain.value + '&' +
+                _.map(parameters, function (p) {
+                    /// <param name='p' type='Parameter' />
+                    return p.toString();
+                }).join('&');
+        }
+
+        this.where = addParameter;
+        this.toString = convertToQueryString;
+    }
 
     function Entity(data, meta) {
         this.Id = null;
@@ -70,9 +107,8 @@
                 });
         }
 
-        function queryMetaData(chainWith, callback) {
-            var chain = chainWith || chainOperation.And;
-            doHttpRequest(storeUrl + 'meta?chainWith=' + chain.value, 'GET', undefined,
+        function queryMetaData(query, callback) {
+            doHttpRequest(storeUrl + 'meta?' + query, 'GET', undefined,
                 function (queryResult, textStatus, jqXHR) {
                     doCallback(callback, [new OperationResult(true, null, queryResult)]);
                 },
@@ -81,9 +117,8 @@
                 });
         }
 
-        function queryData(chainWith, callback) {
-            var chain = chainWith || chainOperation.And;
-            doHttpRequest(storeUrl + '?chainWith=' + chain.value, 'GET', undefined,
+        function queryData(query, callback) {
+            doHttpRequest(storeUrl + '?' + query, 'GET', undefined,
                 function (queryResult, textStatus, jqXHR) {
                     doCallback(callback, [new OperationResult(true, null, queryResult)]);
                 },
@@ -114,7 +149,11 @@
         Entity: Entity,
         chainBy: chainOperation,
         is: operator,
-        OperationResult: OperationResult
+        OperationResult: OperationResult,
+        Query: Query
     };
+    if (!this.ds) {
+        this.ds = this.DataStore;
+    }
 
-}).call(this, this.jQuery);
+}).call(this, this.jQuery, this._);

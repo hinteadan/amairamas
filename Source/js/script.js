@@ -43,10 +43,10 @@
         dataStore.Save(new DataStore.Entity({ Name: 'Danish' }, { Name: 'Danish', Username: 'dan.hintea' }));
     });
     $('#ButtonQueryMeta').click(function () {
-        dataStore.QueryMeta();
+        dataStore.QueryMeta(new ds.Query().where('Name')(ds.is.EqualTo)('Danish'));
     });
     $('#ButtonQuery').click(function () {
-        dataStore.Query();
+        dataStore.Query(new ds.Query().where('Name')(ds.is.EqualTo)('Danish'));
     });
     $('#ButtonDelete').click(function () {
         dataStore.Delete('a2b0312e-0e0c-4628-97f8-15405e8c849d');
