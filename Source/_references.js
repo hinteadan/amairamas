@@ -4,3 +4,4 @@
 /// <reference path="components/hCheckJs/check.js" />
 /// <reference path="js/dataStore.js" />
 /// <reference path="js/model.js" />
+/// <reference path="js/AddCounter.js" />

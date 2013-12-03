@@ -4,7 +4,7 @@
     function Counter(to, title, description) {
         var endsOn = moment(to);
 
-        chk.condition(endsOn.isBefore(moment()), 'Counter must not end in the past');
+        chk.condition(endsOn.isAfter(moment()), 'Counter must not end in the past');
         chk.notEmpty(title, 'title');
 
         this.endsOn = to;
@@ -19,7 +19,7 @@
                 endsOn: this.endsOn,
                 endsOnAsUnix: this.endsOnAsUnix
             };
-        }
+        };
     }
 
     this.model = {
