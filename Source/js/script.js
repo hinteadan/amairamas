@@ -46,13 +46,16 @@
             .then(function (/*result*/) { });
     });
     $('#ButtonQueryMeta').click(function () {
-        dataStore.QueryMeta(new ds.Query().where('Name')(ds.is.EqualTo)('Danish'));
+        Counter
+            .findAllFrom(new ds.Store())
+            .then(function (result) {
+                console.log(result);
+            });
     });
     $('#ButtonQuery').click(function () {
         Counter
             .findAllFrom(new ds.Store())
-            .where('Name')(ds.is.EqualTo)('Danish')
-            .where('Name')(ds.is.EqualTo)('Danish2')
+            .fullEntities()
             .then(function (result) {
                 console.log(result);
             });

@@ -32,7 +32,8 @@
         /// <param name='store' type='ds.Store' />
         chk.notEmpty(store, 'store');
 
-        var dataStoreQuery = new ds.Query(chainBy),
+        var isFullEntityQuery = false,
+            dataStoreQuery = new ds.Query(chainBy),
             self = this;
 
         function whereWrapper(name) {
@@ -52,7 +53,7 @@
                 }
                 doThisOnCallback = doThis;
             }
-            store.Query(dataStoreQuery, function (result) {
+            (isFullEntityQuery === true ? store.Query : store.QueryMeta)(dataStoreQuery, function (result) {
                 ///<param name='result' type='ds.OperationResult' />
                 if (doThisOnCallback) {
                     doThisOnCallback.call(result, result);
@@ -64,6 +65,10 @@
         }
 
         this.where = whereWrapper;
+        this.fullEntities = function () {
+            isFullEntityQuery = true;
+            return self;
+        };
         this.then = function (callback) {
             return doQuery().then(callback);
         };
