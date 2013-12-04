@@ -80,13 +80,4 @@
         return new QueryCounters(ds.chainBy.Or, store);
     };
 
-    /*
-    Counter.findFrom(store).byId(id).then(f(){});
-    Counter.findAllFrom(store)
-        .where('name')(ds.is.EqualTo)('danish')
-        .where('name')(ds.is.EqualTo)('danish')
-        .then(function(result){
-        });
-    */
-
 }).call(this, this.DataStore, this.H.Check);
