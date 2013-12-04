@@ -61,7 +61,9 @@
         dataStore.Delete('a2b0312e-0e0c-4628-97f8-15405e8c849d');
     });
     $('#ButtonLoad').click(function () {
-        dataStore.Load('b71aff3c-7911-42fe-9757-64cc951ba4bd');
+        Counter.findFrom(new ds.Store()).byId('a327d832-011f-4357-a9c9-6d32b21b9d91').then(function (result) {
+            console.log(result);
+        });
     });
 
 })(this.$, this.moment, this.DataStore, this.Counter);
