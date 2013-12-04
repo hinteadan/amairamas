@@ -64,9 +64,10 @@
         this.data = data;
     }
 
-    function HttpDataStore(storeUrl) {
+    function HttpDataStore(storeName, storeUrl) {
 
         storeUrl = storeUrl || 'http://localhost/HttpDataStore/';
+        storeName = storeName || 'Default/';
 
         function doHttpRequest(url, type, data, onSuccess, onError) {
             $.ajax(url || storeUrl, {
@@ -90,7 +91,7 @@
         }
 
         function loadEntity(id, callback) {
-            doHttpRequest(storeUrl + id, 'GET', undefined,
+            doHttpRequest(storeUrl + storeName + id, 'GET', undefined,
                 function (entityData) {
                     var entity = new Entity(entityData.Data, entityData.Meta);
                     entity.Id = entityData.Id;
@@ -103,7 +104,7 @@
 
         function saveEntity(entity, callback) {
             /// <param name='entity' type='Entity' />
-            doHttpRequest(storeUrl, 'PUT', entity,
+            doHttpRequest(storeUrl + storeName, 'PUT', entity,
                 function (id) {
                     entity.Id = id;
                     doCallback(callback, [new OperationResult(true, null, entity)]);
@@ -114,7 +115,7 @@
         }
 
         function queryMetaData(query, callback) {
-            doHttpRequest(storeUrl + 'meta?' + query, 'GET', undefined,
+            doHttpRequest(storeUrl + 'meta/' + storeName + '?' + query, 'GET', undefined,
                 function (queryResult) {
                     doCallback(callback, [new OperationResult(true, null, queryResult)]);
                 },
@@ -124,7 +125,7 @@
         }
 
         function queryData(query, callback) {
-            doHttpRequest(storeUrl + '?' + query, 'GET', undefined,
+            doHttpRequest(storeUrl + storeName + '?' + query, 'GET', undefined,
                 function (queryResult) {
                     doCallback(callback, [new OperationResult(true, null, queryResult)]);
                 },
@@ -134,7 +135,7 @@
         }
 
         function deleteEntity(id, callback) {
-            doHttpRequest(storeUrl + id, 'DELETE', undefined,
+            doHttpRequest(storeUrl + storeName + id, 'DELETE', undefined,
                 function () {
                     doCallback(callback, [new OperationResult(true, null, undefined)]);
                 },
