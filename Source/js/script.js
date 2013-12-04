@@ -49,7 +49,13 @@
         dataStore.QueryMeta(new ds.Query().where('Name')(ds.is.EqualTo)('Danish'));
     });
     $('#ButtonQuery').click(function () {
-        dataStore.Query(new ds.Query().where('Name')(ds.is.Containing)('Danish'));
+        Counter
+            .findAllFrom(new ds.Store())
+            .where('Name')(ds.is.EqualTo)('Danish')
+            .where('Name')(ds.is.EqualTo)('Danish2')
+            .then(function (result) {
+                console.log(result);
+            });
     });
     $('#ButtonDelete').click(function () {
         dataStore.Delete('a2b0312e-0e0c-4628-97f8-15405e8c849d');
