@@ -40,7 +40,7 @@
 
     var dataStore = new ds.Store();
     $('#ButtonSave').click(function () {
-        Counter.AddTo(new ds.Store())
+        Counter.addTo(new ds.Store())
             .having(new Date(2014, 1, 28), 'H\'s Birthday', 'The 2013 birthday of H')
             .save()
             .then(function (/*result*/) { });

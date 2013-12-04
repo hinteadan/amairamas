@@ -40,7 +40,7 @@
     }
 
     this.Counter = this.Counter || {};
-    this.Counter.AddTo = function (store) {
+    this.Counter.addTo = function (store) {
         return new CreateCounter(store);
     };
 
