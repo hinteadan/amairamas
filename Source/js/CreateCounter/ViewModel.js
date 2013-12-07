@@ -17,9 +17,20 @@
         /// <param name='dataStore' type='ds.Store' />
         chk.notEmpty(dataStore, 'dataStore');
 
-        var now = moment(),
+        var self = this,
+            now = moment(),
             yearsToShow = 10,
             months = fetchMonths();
+
+        function defaultResultHandler(result) {
+            /// <param name='result' type='ds.OperationResult' />
+            self.isSaving(false);
+            if (result.isSuccess) {
+                alert('Successfully added!');
+                return;
+            }
+            alert(result.reason);
+        }
 
         this.year = ko.observable(now.year());
         this.month = ko.observable(months[now.month()]);
@@ -33,17 +44,25 @@
         this.months = ko.observableArray(months);
         this.days = ko.observableArray(_.range(1, 31));
 
+        this.isSaving = ko.observable(false);
+
         this.add = function () {
             var entity = new ds.Entity(),
                 eventMoment = moment.utc([this.year(), this.month().index, this.day(), this.hour(), this.minute(), this.second()]);
-            counter
-                .addTo(dataStore)
-                .having(eventMoment.toDate(), this.title())
-                .save()
-                .then(function (result) {
-                    /// <param name='result' type='ds.OperationResult' />
-                    console.log(result);
-                });
+
+            try
+            {
+                counter
+                    .addTo(dataStore)
+                    .having(eventMoment.toDate(), this.title())
+                    .save(function () { self.isSaving(true); })
+                    .then(defaultResultHandler);
+            }
+            catch(err)
+            {
+                /// <param name='err' type='Error' />
+                alert(err.message);
+            }
         };
     }
 

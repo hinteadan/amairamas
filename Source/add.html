@@ -15,7 +15,7 @@
         <select data-bind="options: months, value: month, optionsText: 'name'"></select>
         <select data-bind="options: days, value: day"></select>
         <input data-bind="value: title" placeholder="Event title" />
-        <button type="submit">Add</button>
+        <button type="submit" data-bind="disable: isSaving">Add</button>
     </form>
 
     <!-- build:js js/lib.js -->
