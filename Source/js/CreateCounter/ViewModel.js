@@ -1,6 +1,8 @@
 ﻿(function (ko, moment, _, counter, ds, chk, undefined) {
     'use strict';
 
+    var alert = this.alert;
+
     function Month(name, index) {
         this.name = name;
         this.index = index;
@@ -47,8 +49,7 @@
         this.isSaving = ko.observable(false);
 
         this.add = function () {
-            var entity = new ds.Entity(),
-                eventMoment = moment.utc([this.year(), this.month().index, this.day(), this.hour(), this.minute(), this.second()]);
+            var eventMoment = moment.utc([this.year(), this.month().index, this.day(), this.hour(), this.minute(), this.second()]);
 
             try
             {
