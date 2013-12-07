@@ -1,6 +1,10 @@
 ﻿(function (ds, chk, model, undefined) {
     'use strict';
 
+    function isFunction(f) {
+        return typeof (f) === 'function';
+    }
+
     function CreateCounter(store) {
         /// <param name='store' type='ds.Store' />
         chk.notEmpty(store, 'store');
@@ -14,7 +18,7 @@
             var doThisOnCallback;
 
             function then(doThis) {
-                if (typeof (doThis) !== 'function') {
+                if (!isFunction(doThis)) {
                     return;
                 }
                 doThisOnCallback = doThis;
@@ -32,7 +36,10 @@
 
         this.having = function (endsOnDate, title, description) {
             return {
-                save: function () {
+                save: function (butFirstDoThis) {
+                    if (isFunction(butFirstDoThis)) {
+                        butFirstDoThis.call(undefined);
+                    }
                     return storeCounter(createCounterEntity(endsOnDate, title, description));
                 }
             };
