@@ -10,7 +10,7 @@
 
     <h1>Add an event</h1>
 
-    <form action="javascript:alert('test');">
+    <form data-bind="submit: add">
         <select data-bind="options: years, value: year"></select>
         <select data-bind="options: months, value: month, optionsText: 'name'"></select>
         <select data-bind="options: days, value: day"></select>
@@ -32,6 +32,7 @@
     <!-- endbuild -->
 
     <!-- build:js js/vm/createcounter.js -->
+    <script src="js/CreateCounter/AddCounter.js"></script>
     <script src="js/CreateCounter/ViewModel.js"></script>
     <!-- endbuild -->
 
