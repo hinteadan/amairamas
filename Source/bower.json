@@ -8,7 +8,8 @@
     "lodash": "~2.4.1",
     "moment": "2.4.0",
     "bootstrap": "~3.0.2",
-    "hCheckJs": null
+    "hCheckJs": null,
+	"knockout.js": "~3.0.0"
   }
 }
 
