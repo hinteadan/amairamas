@@ -37,10 +37,11 @@
         this.having = function (endsOnDate, title, description) {
             return {
                 save: function (butFirstDoThis) {
+                    var entity = createCounterEntity(endsOnDate, title, description);
                     if (isFunction(butFirstDoThis)) {
-                        butFirstDoThis.call(undefined);
+                        butFirstDoThis.call(undefined, entity);
                     }
-                    return storeCounter(createCounterEntity(endsOnDate, title, description));
+                    return storeCounter(entity);
                 }
             };
         };
