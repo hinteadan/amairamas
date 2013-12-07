@@ -7,3 +7,5 @@
 /// <reference path="js/model.js" />
 /// <reference path="js/AddCounter.js" />
 /// <reference path="js/QueryCounters.js" />
+
+/// <reference path="js/CreateCounter/ViewModel.js" />
