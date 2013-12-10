@@ -3,6 +3,7 @@
 
     notyDefaults.layout = 'bottom';
     notyDefaults.timeout = 5000;
+    notyDefaults.animation.speed = 200;
 
     var noteType = {
         alert: 'alert',
