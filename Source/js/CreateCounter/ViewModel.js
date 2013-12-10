@@ -1,7 +1,7 @@
 ﻿(function (ko, moment, _, counter, ds, chk, undefined) {
     'use strict';
 
-    var alert = this.alert;
+    var alert = this.notify.message;
 
     function Month(name, index) {
         this.name = name;
@@ -27,11 +27,7 @@
         function defaultResultHandler(result) {
             /// <param name='result' type='ds.OperationResult' />
             self.isSaving(false);
-            if (result.isSuccess) {
-                alert('Successfully added!');
-                return;
-            }
-            alert(result.reason);
+            alert(result);
         }
 
         this.year = ko.observable(now.year());
