@@ -1,7 +1,5 @@
-﻿(function (ko, moment, _, counter, ds, chk, undefined) {
+﻿(function (ko, moment, _, counter, ds, chk, notify, undefined) {
     'use strict';
-
-    var alert = this.notify.message;
 
     function Month(name, index) {
         this.name = name;
@@ -27,7 +25,7 @@
         function defaultResultHandler(result) {
             /// <param name='result' type='ds.OperationResult' />
             self.isSaving(false);
-            alert(result);
+            notify.operation(result);
         }
 
         this.year = ko.observable(now.year());
@@ -58,11 +56,11 @@
             catch(err)
             {
                 /// <param name='err' type='Error' />
-                alert(err.message);
+                notify.message(err.message, notify.type.warning);
             }
         };
     }
 
     ko.applyBindings(new ViewModel(new ds.Store()));
 
-}).call(this, this.ko, this.moment, this._, this.Counter, this.DataStore, this.H.Check);
+}).call(this, this.ko, this.moment, this._, this.Counter, this.DataStore, this.H.Check, this.notify);
