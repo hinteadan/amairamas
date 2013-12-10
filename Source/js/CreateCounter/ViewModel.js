@@ -26,6 +26,17 @@
             /// <param name='result' type='ds.OperationResult' />
             self.isSaving(false);
             notify.operation(result);
+            reset();
+        }
+
+        function reset() {
+            self.year(now.year());
+            self.month(months[now.month()]);
+            self.day(now.date());
+            self.hour(now.hour());
+            self.minute(now.minute());
+            self.second(now.second());
+            self.title('');
         }
 
         this.year = ko.observable(now.year());
