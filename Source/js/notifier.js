@@ -1,5 +1,20 @@
-﻿(function (chk, undefined) {
+﻿(function (chk, noty, notyDefaults, undefined) {
     'use strict';
+
+    notyDefaults.layout = 'bottom';
+
+    var noteType = {
+        alert: 'alert',
+        success: 'success',
+        error: 'error',
+        warning: 'warning',
+        information: 'information',
+        confirm: 'confirm'
+    };
+
+    function showUiMessage(message, type) {
+        noty({ text: message, type: type || noteType.alert });
+    }
 
     function Notifier() {
 
@@ -17,12 +32,12 @@
             /// <param name='operation' type='DataStore.OperationResult' />
             chk.notEmpty(operation);
 
-            alert(!chk.isEmpty(operation.reason) ? operation.reason : defaultMessageForOperation(operation));
+            showUiMessage(!chk.isEmpty(operation.reason) ? operation.reason : defaultMessageForOperation(operation));
         }
 
         function notifyMessage(message) {
             chk.notEmpty(message);
-            alert(message);
+            showUiMessage(message);
         }
 
         this.operation = notifyOperation;
@@ -31,4 +46,4 @@
 
     this.notify = new Notifier();
 
-}).call(this, this.H.Check);
+}).call(this, this.H.Check, this.noty, this.$.noty.defaults);
