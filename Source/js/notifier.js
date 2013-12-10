@@ -2,6 +2,7 @@
     'use strict';
 
     notyDefaults.layout = 'bottom';
+    notyDefaults.timeout = 5000;
 
     var noteType = {
         alert: 'alert',
@@ -13,7 +14,7 @@
     };
 
     function showUiMessage(message, type) {
-        noty({ text: message, type: type || noteType.alert });
+        noty({ text: message.toString(), type: type || noteType.alert });
     }
 
     function Notifier() {
@@ -32,16 +33,19 @@
             /// <param name='operation' type='DataStore.OperationResult' />
             chk.notEmpty(operation);
 
-            showUiMessage(!chk.isEmpty(operation.reason) ? operation.reason : defaultMessageForOperation(operation));
+            showUiMessage(
+                !chk.isEmpty(operation.reason) ? operation.reason : defaultMessageForOperation(operation),
+                operation.isSuccess ? noteType.success : noteType.error);
         }
 
-        function notifyMessage(message) {
+        function notifyMessage(message, type) {
             chk.notEmpty(message);
-            showUiMessage(message);
+            showUiMessage(message, type);
         }
 
         this.operation = notifyOperation;
         this.message = notifyMessage;
+        this.type = noteType;
     }
 
     this.notify = new Notifier();
