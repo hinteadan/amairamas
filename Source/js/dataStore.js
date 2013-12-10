@@ -14,6 +14,10 @@
             Containing: { id: 5, value: 'Contains' },
             BeginningWith: { id: 6, value: 'BeginsWith' },
             EndingWith: { id: 7, value: 'EndsWith' }
+        },
+        defaultMessageFor = {
+            success: 'Operation completed successfully',
+            failure: 'Cannot complete the operation, please try again or contact us'
         };
 
     function Query(chainWith) {
@@ -62,6 +66,11 @@
         this.isSuccess = isSuccess === true ? true : false;
         this.reason = reason || null;
         this.data = data;
+        this.toString = function () {
+            return this.reason ? this.reason :
+                this.isSuccess ? defaultMessageFor.success :
+                defaultMessageFor.failure;
+        };
     }
 
     function HttpDataStore(storeName, storeUrl) {
