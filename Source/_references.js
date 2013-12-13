@@ -11,3 +11,4 @@
 /// <reference path="js/notifier.js" />
 
 /// <reference path="js/CreateCounter/ViewModel.js" />
+/// <reference path="js/Calendar/ViewModel.js" />

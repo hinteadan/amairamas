@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Calendar</title>
+    <!-- build:css styles/main.css -->
+    <link href="components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+<body>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="7" class="text-center">
+                    <span data-bind="text: monthNames[month()]"></span>
+                    <span data-bind="text: year"></span>
+                </th>
+            </tr>
+            <tr data-bind="foreach: weekDays">
+                <th data-bind="text: $data" class="text-center"></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: weeks">
+            <tr data-bind="foreach: $data">
+                <td data-bind="text: $data" class="text-center"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- build:js js/lib.js -->
+    <script src="components/hCheckJs/check.js"></script>
+    <script src="components/knockout.js/knockout.debug.js"></script>
+    <script src="components/jquery/jquery.min.js"></script>
+    <script src="components/lodash/dist/lodash.js"></script>
+    <script src="components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="components/moment/moment.js"></script>
+    <script src="components/noty/js/noty/jquery.noty.js"></script>
+    <script src="components/noty/js/noty/layouts/top.js"></script>
+    <script src="components/noty/js/noty/layouts/bottom.js"></script>
+    <script src="components/noty/js/noty/themes/default.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/appcore.js -->
+    <script src="js/model.js"></script>
+    <script src="js/dataStore.js"></script>
+    <script src="js/notifier.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/vm/calendar.js -->
+    <script src="js/Calendar/ViewModel.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
