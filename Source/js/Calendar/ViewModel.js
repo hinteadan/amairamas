@@ -2,6 +2,22 @@
     'use strict';
 
     function ViewModel() {
+        var today = ko.observable(19);
+
+        function calculateDayLevel(day) {
+            return Math.abs(today() - day);
+        }
+
+        function generateDayCssClass(day) {
+            var level = calculateDayLevel(day);
+            if(level > 3){
+                return null;
+            }
+            return 'day' + level;
+        }
+
+        this.today = today;
+        this.dayClass = generateDayCssClass;
         this.weekDays = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
         this.monthNames = ['Ian', 'Feb', 'Mar', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct', 'Noi', 'Dec'];
         this.year = ko.observable(2013);

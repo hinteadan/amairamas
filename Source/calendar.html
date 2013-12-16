@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <table class="table">
+    <table class="table v-align-m">
         <thead>
             <tr>
                 <th colspan="7" class="text-center">
@@ -23,7 +23,7 @@
         </thead>
         <tbody data-bind="foreach: weeks">
             <tr data-bind="foreach: $data">
-                <td class="text-center clickable" data-bind="text: $data"></td>
+                <td class="day text-center clickable" data-bind="text: $data, css: $root.dayClass($data)"></td>
             </tr>
         </tbody>
     </table>
