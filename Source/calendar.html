@@ -25,10 +25,13 @@
         </thead>
         <tbody data-bind="foreach: weeks">
             <tr data-bind="foreach: $data">
-                <td class="day text-center clickable" data-bind="text: $data, css: $root.dayClass($data)"></td>
+                <td class="day text-center clickable" data-bind="text: $data, css: $root.dayClass($data), click: $root.setDate"></td>
             </tr>
         </tbody>
     </table>
+
+    Selected Date:
+    <span data-bind="text: selectedDate" ></span>
 
     <!-- build:js js/lib.js -->
     <script src="components/hCheckJs/check.js"></script>

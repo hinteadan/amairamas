@@ -1,11 +1,13 @@
-﻿(function (ko, undefined) {
+﻿(function (ko, chk, undefined) {
     'use strict';
 
     function ViewModel() {
         var today = ko.observable(19),
             year = ko.observable(2013),
+            month = ko.observable(11),
             yearsToShow = 10,
-            years = ko.observableArray([]);
+            years = ko.observableArray([]),
+            selectedDate = ko.observable(null);
 
         function initializeYears() {
             for (var y = year() ; y < year() + yearsToShow; y++) {
@@ -25,6 +27,15 @@
             return 'day' + level;
         }
 
+        function generateDate(dayOfMonth, mt, y, h, m, s) {
+            chk.notEmpty(dayOfMonth, 'dayOfMonth');
+            return new Date(y || year(), mt || month(), dayOfMonth, h || 0, m || 0, s || 0);
+        }
+
+        function setSelectedDate(dayOfMonth) {
+            selectedDate(generateDate(dayOfMonth));
+        }
+
         initializeYears();
 
         this.today = today;
@@ -34,7 +45,7 @@
         this.months = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
         this.years = years;
         this.year = year;
-        this.month = ko.observable(11);
+        this.month = month;
         this.weeks = [
             [25, 26, 27, 28, 29, 30, 1],
             [2, 3, 4, 5, 6, 7, 8],
@@ -43,8 +54,10 @@
             [23, 24, 25, 26, 27, 28, 29],
             [30, 31, 1, 2, 3, 4, 5]
         ];
+        this.setDate = setSelectedDate;
+        this.selectedDate = selectedDate;
     }
 
     ko.applyBindings(new ViewModel());
 
-}).call(this, this.ko);
+}).call(this, this.ko, this.H.Check);
