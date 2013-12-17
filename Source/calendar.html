@@ -14,7 +14,9 @@
             <tr>
                 <th colspan="7" class="text-center">
                     <span data-bind="text: monthNames[month()]"></span>
+                    <select data-bind="options: months, value: month"></select>
                     <span data-bind="text: year"></span>
+                    <select data-bind="options: years, value: year"></select>
                 </th>
             </tr>
             <tr data-bind="foreach: weekDays">
