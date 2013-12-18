@@ -1,4 +1,4 @@
-(function ($, moment, ds, Counter, undefined) {
+(function (app, $, moment, ds, Counter, undefined) {
     'use strict';
 
     var counterJq = $('.counter'),
@@ -69,4 +69,4 @@
         });
     });
 
-})(this.$, this.moment, this.DataStore, this.Counter);
+})(this.app, this.$, this.moment, this.DataStore, this.Counter);
