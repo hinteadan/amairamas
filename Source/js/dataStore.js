@@ -73,10 +73,13 @@
         };
     }
 
-    function HttpDataStore(storeName, storeUrl) {
+    function HttpDataStore(name, url) {
 
-        storeUrl = storeUrl || 'http://localhost/HttpDataStore/';
-        storeName = storeName || 'Default/';
+        var storeUrl = url || 'http://localhost/HttpDataStore/';
+        var storeName = name || 'Default/';
+        if (storeName[storeName.length - 1] !== '/') {
+            storeName += '/';
+        }
 
         function doHttpRequest(url, type, data, onSuccess, onError) {
             $.ajax(url || storeUrl, {
