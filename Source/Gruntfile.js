@@ -254,12 +254,13 @@ module.exports = function (grunt) {
             ]
         },
         replace: {
-            dist: {
+            appConfig: {
                 options: {
                     patterns: [
                         {
-                            match: 'HttpDataStore',
-                            replacement: 'TEST'
+                            match: '/http://localhost/HttpDataStore//',
+                            replacement: 'http://hintee.somee.com/',
+                            expression: true
                         }
                     ]
                 },
@@ -294,7 +295,7 @@ module.exports = function (grunt) {
         'cssmin',
         'concat',
         'uglify',
-        'replace:dist',
+        'replace:appConfig',
         'copy',
         'rev',
         'usemin'
