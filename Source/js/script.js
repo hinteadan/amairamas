@@ -40,21 +40,21 @@
 
     var dataStore = new ds.Store();
     $('#ButtonSave').click(function () {
-        Counter.addTo(new ds.Store())
+        Counter.addTo(dataStore)
             .having(new Date(2014, 1, 28), 'H\'s Birthday', 'The 2013 birthday of H')
             .save()
             .then(function (/*result*/) { });
     });
     $('#ButtonQueryMeta').click(function () {
         Counter
-            .findAllFrom(new ds.Store())
+            .findAllFrom(dataStore)
             .then(function (result) {
                 console.log(result);
             });
     });
     $('#ButtonQuery').click(function () {
         Counter
-            .findAllFrom(new ds.Store())
+            .findAllFrom(dataStore)
             .fullEntities()
             .then(function (result) {
                 console.log(result);
@@ -64,7 +64,7 @@
         dataStore.Delete('a2b0312e-0e0c-4628-97f8-15405e8c849d');
     });
     $('#ButtonLoad').click(function () {
-        Counter.findFrom(new ds.Store()).byId('a327d832-011f-4357-a9c9-6d32b21b9d91').then(function (result) {
+        Counter.findFrom(dataStore).byId('a327d832-011f-4357-a9c9-6d32b21b9d91').then(function (result) {
             console.log(result);
         });
     });
