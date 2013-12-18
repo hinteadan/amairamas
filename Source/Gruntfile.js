@@ -252,6 +252,24 @@ module.exports = function (grunt) {
                 'svgmin',
                 'htmlmin'
             ]
+        },
+        replace: {
+            dist: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'HttpDataStore',
+                            replacement: 'TEST'
+                        }
+                    ]
+                },
+                files: [
+                    {
+                        src: ['build\\js\\appcore.js'],
+                        dest: 'build\\js\\appcore.js'
+                    }
+                ]
+            }
         }
     });
 
@@ -276,6 +294,7 @@ module.exports = function (grunt) {
         'cssmin',
         'concat',
         'uglify',
+        'replace:dist',
         'copy',
         'rev',
         'usemin'
