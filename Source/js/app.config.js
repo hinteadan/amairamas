@@ -2,7 +2,9 @@
     'use strict';
 
     var appConfig = {
-
+        connectionString: {
+            httpDataStore: 'http://localhost/HttpDataStore/'
+        }
     };
 
     this.app = this.app || {};

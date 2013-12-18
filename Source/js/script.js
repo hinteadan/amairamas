@@ -1,4 +1,4 @@
-(function ($, moment, ds, Counter) {
+(function ($, moment, ds, Counter, undefined) {
     'use strict';
 
     var counterJq = $('.counter'),
@@ -38,7 +38,7 @@
 
     updateCounterAndQueueAnother();
 
-    var dataStore = new ds.Store();
+    var dataStore = new ds.Store('Test', app.config.connectionString.httpDataStore);
     $('#ButtonSave').click(function () {
         Counter.addTo(dataStore)
             .having(new Date(2014, 1, 28), 'H\'s Birthday', 'The 2013 birthday of H')
