@@ -1,4 +1,4 @@
-﻿(function (ko, chk, undefined) {
+﻿(function (ko, chk, moment, undefined) {
     'use strict';
 
     function ViewModel() {
@@ -31,15 +31,19 @@
         }
 
         function initializeWeeks() {
+            var now = moment(),
+                daysInMonth = now.daysInMonth(),
+                week = [];
             weeks.removeAll();
-            weeks([
-                    [25, 26, 27, 28, 29, 30, 1],
-                    [2, 3, 4, 5, 6, 7, 8],
-                    [9, 10, 11, 12, 13, 14, 15],
-                    [16, 17, 18, 19, 20, 21, 22],
-                    [23, 24, 25, 26, 27, 28, 29],
-                    [30, 31, 1, 2, 3, 4, 5]
-                ]);
+
+            for (var dayInMonth = 1; dayInMonth <= daysInMonth; dayInMonth++) {
+                var weekDay = now.date(dayInMonth).isoWeekday();
+                week.push(dayInMonth);
+                if (weekDay === 7 || dayInMonth === daysInMonth) {
+                    weeks.push(week);
+                    week = [];
+                }
+            }
         }
 
         function calculateDayLevel(day) {
@@ -80,4 +84,4 @@
 
     ko.applyBindings(new ViewModel());
 
-}).call(this, this.ko, this.H.Check);
+}).call(this, this.ko, this.H.Check, this.moment);
