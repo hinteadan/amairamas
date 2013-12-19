@@ -14,8 +14,8 @@
             <tr>
                 <th colspan="7" class="text-center">
                     <div class="inline-block hover-hide">
-                        <div class="hideable onHover" data-bind="text: monthNames[month()]"></div>
-                        <select class="hideable" data-bind="options: months, value: month"></select>
+                        <div class="hideable onHover" data-bind="text: months[month()].Label"></div>
+                        <select class="hideable" data-bind="options: months, value: month, optionsValue: 'Index', optionsText: 'Label'"></select>
                     </div>
                     <div class="inline-block hover-hide">
                         <div class="hideable onHover" data-bind="text: year"></div>

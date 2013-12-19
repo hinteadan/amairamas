@@ -7,6 +7,20 @@
             month = ko.observable(11),
             yearsToShow = 10,
             years = ko.observableArray([]),
+            months = [
+                { Label: 'Ian', Index: 0 },
+                { Label: 'Feb', Index: 1 },
+                { Label: 'Mar', Index: 2 },
+                { Label: 'Apr', Index: 3 },
+                { Label: 'Mai', Index: 4 },
+                { Label: 'Iun', Index: 5 },
+                { Label: 'Iul', Index: 6 },
+                { Label: 'Aug', Index: 7 },
+                { Label: 'Sep', Index: 8 },
+                { Label: 'Oct', Index: 9 },
+                { Label: 'Noi', Index: 10 },
+                { Label: 'Dec', Index: 11 }
+            ],
             selectedDate = ko.observable(null);
 
         function initializeYears() {
@@ -41,8 +55,7 @@
         this.today = today;
         this.dayClass = generateDayCssClass;
         this.weekDays = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-        this.monthNames = ['Ian', 'Feb', 'Mar', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct', 'Noi', 'Dec'];
-        this.months = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+        this.months = months;
         this.years = years;
         this.year = year;
         this.month = month;
