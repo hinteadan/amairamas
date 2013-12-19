@@ -13,10 +13,14 @@
         <thead>
             <tr>
                 <th colspan="7" class="text-center">
-                    <span data-bind="text: monthNames[month()]"></span>
-                    <select data-bind="options: months, value: month"></select>
-                    <span data-bind="text: year"></span>
-                    <select data-bind="options: years, value: year"></select>
+                    <div class="inline-block hover-hide">
+                        <div class="hideable onHover" data-bind="text: monthNames[month()]"></div>
+                        <select class="hideable" data-bind="options: months, value: month"></select>
+                    </div>
+                    <div class="inline-block hover-hide">
+                        <div class="hideable onHover" data-bind="text: year"></div>
+                        <select class="hideable" data-bind="options: years, value: year"></select>
+                    </div>
                 </th>
             </tr>
             <tr data-bind="foreach: weekDays">
@@ -31,7 +35,7 @@
     </table>
 
     Selected Date:
-    <span data-bind="text: selectedDate" ></span>
+    <span data-bind="text: selectedDate"></span>
 
     <!-- build:js js/lib.js -->
     <script src="components/hCheckJs/check.js"></script>

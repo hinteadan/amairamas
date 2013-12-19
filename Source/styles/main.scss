@@ -1,5 +1,9 @@
 @import "normalize-scss/normalize";
 
+.inline-block{
+	display: inline-block;
+}
+
 .v-align-m,
 table.v-align-m > tbody > tr > td{
 	vertical-align: middle;
@@ -28,4 +32,24 @@ table.v-align-m > tbody > tr > td{
 }
 .day3{
 	font-size: 1.2em;
+}
+
+.hover-hide .hideable{
+    width: 60px;
+    height: 21px;
+    border: none;
+}
+
+.hover-hide .hideable.onHover {
+    display: inherit;
+}
+.hover-hide .hideable {
+	display: none;
+}
+
+.hover-hide:hover .hideable.onHover {
+	display: none;
+}
+.hover-hide:hover .hideable {
+    display: inherit;
 }
