@@ -143,7 +143,7 @@ module.exports = function (grunt) {
                 dest: 'build'
             },
             html: {
-                src: ['index.html', 'add.html']
+                src: ['*.html']
             }
         },
         usemin: {
