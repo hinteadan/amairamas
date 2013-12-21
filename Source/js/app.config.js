@@ -2,6 +2,7 @@
     'use strict';
 
     this.infuser.defaults.templateSuffix = '.tmpl.html';
+    this.$.support.cors = true;
 
     var appConfig = {
         connectionString: {
