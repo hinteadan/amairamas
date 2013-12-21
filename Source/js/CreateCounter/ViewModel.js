@@ -13,9 +13,11 @@
         }).value();
     }
 
-    function ViewModel(dataStore) {
+    function ViewModel(dataStore, calendarViewModel) {
         /// <param name='dataStore' type='ds.Store' />
+        /// <param name='calendarViewModel' type='model.CalendarViewModel' />
         chk.notEmpty(dataStore, 'dataStore');
+        chk.notEmpty(calendarViewModel, 'calendarViewModel');
 
         var self = this,
             now = moment(),
@@ -38,6 +40,8 @@
             self.second(now.second());
             self.title('');
         }
+
+        this.calendar = calendarViewModel;
 
         this.year = ko.observable(now.year());
         this.month = ko.observable(months[now.month()]);
@@ -72,6 +76,6 @@
         };
     }
 
-    ko.applyBindings(new ViewModel(new ds.Store()));
+    ko.applyBindings(new ViewModel(new ds.Store(), new this.model.CalendarViewModel()));
 
 }).call(this, this.ko, this.moment, this._, this.Counter, this.DataStore, this.H.Check, this.notify);

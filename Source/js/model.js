@@ -22,8 +22,7 @@
         };
     }
 
-    this.model = {
-        Counter: Counter
-    };
+    this.model = this.model || {};
+    this.model.Counter = Counter;
 
 }).call(this, this.H.Check, this.moment);

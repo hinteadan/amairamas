@@ -13,6 +13,8 @@
 
     <h1>Add an event</h1>
 
+    <div data-bind="template: { name: 'calendar', data: calendar }"></div>
+
     <form data-bind="submit: add">
         <select data-bind="options: years, value: year"></select>
         <select data-bind="options: months, value: month, optionsText: 'name'"></select>
@@ -25,6 +27,7 @@
     <script src="components/hCheckJs/check.js"></script>
     <script src="components/knockout.js/knockout.debug.js"></script>
     <script src="components/jquery/jquery.min.js"></script>
+    <script src="components/knockout-external-templates/lib/koExternalTemplateEngine_all.js"></script>
     <script src="components/lodash/dist/lodash.js"></script>
     <script src="components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="components/moment/moment.js"></script>
@@ -40,6 +43,7 @@
     <script src="js/notifier.js"></script>
     <!-- endbuild -->
     <!-- build:js js/vm/createcounter.js -->
+    <script src="js/Calendar/ViewModel.js"></script>
     <script src="js/CreateCounter/AddCounter.js"></script>
     <script src="js/CreateCounter/ViewModel.js"></script>
     <!-- endbuild -->

@@ -1,0 +1,33 @@
+﻿<table class="table table-bordered v-align-m calendar">
+    <thead>
+        <tr>
+            <th colspan="7" class="text-center">
+                <div class="inline-block hover-hide">
+                    <button class="btn btn-link glass" data-bind="click: prevYear">&laquo;</button>
+                    <button class="btn btn-link glass" data-bind="click: prevMonth">&lsaquo;</button>
+
+                    <div class="strong hideable onHover selectable" data-bind="text: months[month()].Label"></div>
+                    <select class="strong hideable text-center" data-bind="options: months, value: month, optionsValue: 'Index', optionsText: 'Label'"></select>
+
+                    <div class="strog hideable onHover selectable strong" data-bind="text: year"></div>
+                    <select class="strog hideable text-center strong" data-bind="options: years, value: year"></select>
+
+                    <button class="btn btn-link glass" data-bind="click: nextMonth">&rsaquo;</button>
+                    <button class="btn btn-link glass" data-bind="click: nextYear">&raquo;</button>
+                </div>
+                <br />
+                <div class="inline-block hover-hide">
+                    <button class="btn btn-link glass" data-bind="click: moveToToday">Today</button>
+                </div>
+            </th>
+        </tr>
+        <tr data-bind="foreach: weekDays">
+            <th data-bind="text: $data" class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: weeks">
+        <tr data-bind="foreach: $data">
+            <td class="day text-center" data-bind="text: $data, css: $parents[1].dayClass($data), click: $parents[1].setDate"></td>
+        </tr>
+    </tbody>
+</table>

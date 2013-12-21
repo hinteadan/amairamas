@@ -144,6 +144,7 @@
         this.moveToToday = moveToToday;
     }
 
-    ko.applyBindings(new ViewModel());
+    this.model = this.model || {};
+    this.model.CalendarViewModel = ViewModel;
 
 }).call(this, this.ko, this.H.Check, this.moment);

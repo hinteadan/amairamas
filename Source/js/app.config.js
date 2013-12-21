@@ -1,6 +1,8 @@
 ﻿(function (undefined) {
     'use strict';
 
+    this.infuser.defaults.templateSuffix = '.tmpl.html';
+
     var appConfig = {
         connectionString: {
             httpDataStore: 'http://localhost/HttpDataStore/'
