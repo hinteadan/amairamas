@@ -2,9 +2,10 @@
     'use strict';
 
     function ViewModel() {
-        var today = ko.observable(19),
-            year = ko.observable(2013),
-            month = ko.observable(11),
+        var now = moment(),
+            today = ko.observable(now.date()),
+            year = ko.observable(now.year()),
+            month = ko.observable(now.month()),
             yearsToShow = 10,
             years = ko.observableArray([]),
             months = [
@@ -30,8 +31,20 @@
             }
         }
 
+        function ensureFullWeek(week) {
+            ///<param name='week' type='Array' elementType='Number' />
+            if (week.length === 7) {
+                return;
+            }
+            var fillDay = week[0] === 1 ? week.unshift : week.push,
+                daysToFill = 7 - week.length;
+            for (var i = 0; i < daysToFill; i++) {
+                fillDay.call(week, null);
+            }
+        }
+
         function initializeWeeks() {
-            var now = moment(),
+            var now = moment([year(), month()]),
                 daysInMonth = now.daysInMonth(),
                 week = [];
             weeks.removeAll();
@@ -40,6 +53,7 @@
                 var weekDay = now.date(dayInMonth).isoWeekday();
                 week.push(dayInMonth);
                 if (weekDay === 7 || dayInMonth === daysInMonth) {
+                    ensureFullWeek(week);
                     weeks.push(week);
                     week = [];
                 }
@@ -102,6 +116,8 @@
 
         initializeYears();
         initializeWeeks();
+        month.subscribe(initializeWeeks);
+        year.subscribe(initializeWeeks);
 
         this.today = today;
         this.dayClass = generateDayCssClass;
