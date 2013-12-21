@@ -114,6 +114,11 @@
             }
         }
 
+        function moveToToday() {
+            month(now.month());
+            year(now.year());
+        }
+
         initializeYears();
         initializeWeeks();
         month.subscribe(initializeWeeks);
@@ -133,6 +138,7 @@
         this.nextYear = moveToNextYear;
         this.prevMonth = moveToPrevMonth;
         this.prevYear = moveToPrevYear;
+        this.moveToToday = moveToToday;
     }
 
     ko.applyBindings(new ViewModel());
