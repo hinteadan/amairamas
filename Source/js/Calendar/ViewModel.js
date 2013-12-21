@@ -58,6 +58,10 @@
                     week = [];
                 }
             }
+
+            if (weeks().length < 6) {
+                weeks.push([null, null, null, null, null, null, null]);
+            }
         }
 
         function calculateDayLevel(day) {

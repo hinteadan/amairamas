@@ -10,6 +10,10 @@
 
 table.calendar > tbody > tr > td{
 	width: 14%;
+	height: 50px;
+	-webkit-box-sizing: initial;
+	-moz-box-sizing: initial;
+	box-sizing: initial;
 }
 
 .v-align-m,
