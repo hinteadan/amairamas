@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Add event</title>
     <!-- build:css styles/main.css -->
     <link href="components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles/main.css">
@@ -11,17 +11,23 @@
 </head>
 <body>
 
-    <h1>Add an event</h1>
+    
 
-    <div data-bind="template: { name: 'calendar', data: calendar }"></div>
+    <div class="container">
+        <div class="row">&nbsp;</div>
+        <form data-bind="submit: add" role="form">
+            <div class="form-group input-group-lg">
+                <input class="form-control text-center" data-bind="value: title, hasfocus: true" placeholder="Event title" />
+            </div>
+            <div class="form-group input-group-lg">
+                <div data-bind="template: { name: 'calendar', data: calendar }"></div>
+            </div>
 
-    <form data-bind="submit: add">
-        <select data-bind="options: years, value: year"></select>
-        <select data-bind="options: months, value: month, optionsText: 'name'"></select>
-        <select data-bind="options: days, value: day"></select>
-        <input data-bind="value: title" placeholder="Event title" />
-        <button type="submit" data-bind="disable: isSaving">Add</button>
-    </form>
+            <div class="form-group input-group-lg">
+                <button type="submit" class="btn btn-large btn-primary form-control" data-bind="disable: isSaving">Add</button>
+            </div>
+        </form>
+    </div>
 
     <!-- build:js js/lib.js -->
     <script src="components/hCheckJs/check.js"></script>
