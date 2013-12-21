@@ -1,7 +1,7 @@
 ﻿(function (chk, noty, notyDefaults, undefined) {
     'use strict';
 
-    notyDefaults.layout = 'bottom';
+    notyDefaults.layout = 'topRight';
     notyDefaults.timeout = 5000;
     notyDefaults.animation.speed = 200;
 
@@ -46,6 +46,9 @@
 
         this.operation = notifyOperation;
         this.message = notifyMessage;
+        this.warning = function (message) {
+            notifyMessage(message, noteType.warning);
+        };
         this.type = noteType;
     }
 

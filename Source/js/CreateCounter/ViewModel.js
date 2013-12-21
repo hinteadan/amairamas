@@ -58,7 +58,16 @@
         this.isSaving = ko.observable(false);
 
         this.add = function () {
-            var eventMoment = moment.utc([this.year(), this.month().index, this.day(), this.hour(), this.minute(), this.second()]);
+            if (chk.isEmpty(this.title())) {
+                notify.warning('Please enter a title for the event');
+                return;
+            }
+            if (chk.isEmpty(calendarViewModel.selectedDate())) {
+                notify.warning('Select a date first');
+                return;
+            }
+            var date = calendarViewModel.selectedDate(),
+                eventMoment = moment.utc([calendarViewModel.year(), this.month().index, this.day(), this.hour(), this.minute(), this.second()]);
 
             try
             {
@@ -71,7 +80,7 @@
             catch(err)
             {
                 /// <param name='err' type='Error' />
-                notify.message(err.message, notify.type.warning);
+                notify.warning(err.message);
             }
         };
     }
