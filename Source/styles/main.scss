@@ -35,13 +35,17 @@ table.v-align-m > tbody > tr > td{
 }
 
 .hover-hide .hideable{
-    width: 60px;
-    height: 21px;
-    border: none;
+	font-weight: normal;
+	width: 56px;
+	height: 21px;
+	border: none;
+}
+.hover-hide .hideable.selectable {
+	padding-right: 13px;
 }
 
 .hover-hide .hideable.onHover {
-    display: inherit;
+	display: inherit;
 }
 .hover-hide .hideable {
 	display: none;
@@ -51,5 +55,5 @@ table.v-align-m > tbody > tr > td{
 	display: none;
 }
 .hover-hide:hover .hideable {
-    display: inherit;
+	display: inherit;
 }
