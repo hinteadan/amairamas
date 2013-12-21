@@ -46,6 +46,11 @@ table.v-align-m > tbody > tr > td{
 .hover-hide .hideable.selectable {
 	padding-right: 13px;
 }
+.hover-hide select{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
 
 .hover-hide .hideable.onHover {
 	display: inherit;
@@ -59,4 +64,11 @@ table.v-align-m > tbody > tr > td{
 }
 .hover-hide:hover .hideable {
 	display: inherit;
+}
+
+.hover-hide .glass{
+	opacity: 0.1;
+}
+.hover-hide:hover .glass {
+	opacity: inherit;
 }
