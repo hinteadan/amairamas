@@ -6,7 +6,8 @@
 
     var appConfig = {
         connectionString: {
-            httpDataStore: 'http://localhost/HttpDataStore/'
+            httpDataStore: 'http://localhost/HttpDataStore/',
+            dbName: 'TrialAndError'
         }
     };
 
