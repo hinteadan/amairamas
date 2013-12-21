@@ -4,6 +4,10 @@
 	display: inline-block;
 }
 
+.strong {
+	font-weight: bold;
+}
+
 .v-align-m,
 table.v-align-m > tbody > tr > td{
 	vertical-align: middle;
@@ -35,7 +39,6 @@ table.v-align-m > tbody > tr > td{
 }
 
 .hover-hide .hideable{
-	font-weight: normal;
 	width: 56px;
 	height: 21px;
 	border: none;
