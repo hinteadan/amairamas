@@ -1,5 +1,6 @@
 ﻿/// <reference path="components/knockout.js/knockout.debug.js" />
 /// <reference path="components/jquery/jquery.js" />
+/// <reference path="components/jquery.parsequery/jquery.query-2.1.5-fixed.js" />
 /// <reference path="components/knockout-external-templates/lib/koExternalTemplateEngine_all.js" />
 /// <reference path="components/lodash/dist/lodash.js" />
 /// <reference path="components/moment/moment.js" />
