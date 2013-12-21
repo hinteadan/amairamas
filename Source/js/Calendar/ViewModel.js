@@ -67,9 +67,9 @@
         function generateDayCssClass(day) {
             var level = calculateDayLevel(day);
             if(level > 3){
-                return null;
+                return day ? 'clickable' : null;
             }
-            return 'day' + level;
+            return 'day' + level + ' clickable';
         }
 
         function generateDate(dayOfMonth, mt, y, h, m, s) {
@@ -78,6 +78,9 @@
         }
 
         function setSelectedDate(dayOfMonth) {
+            if (!dayOfMonth) {
+                return;
+            }
             selectedDate(generateDate(dayOfMonth));
         }
 

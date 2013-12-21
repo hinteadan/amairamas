@@ -8,6 +8,10 @@
 	font-weight: bold;
 }
 
+table.calendar > tbody > tr > td{
+	width: 14%;
+}
+
 .v-align-m,
 table.v-align-m > tbody > tr > td{
 	vertical-align: middle;
@@ -17,7 +21,7 @@ table.v-align-m > tbody > tr > td{
 	cursor: pointer;
 }
 
-.day:hover{
+.day.clickable:hover{
 	background-color:#f4f4f4 ;
 }
 
@@ -44,7 +48,7 @@ table.v-align-m > tbody > tr > td{
 	border: none;
 }
 .hover-hide .hideable.selectable {
-	padding-right: 13px;
+	padding-right: 16px;
 }
 .hover-hide select{
 	margin: 0px;
