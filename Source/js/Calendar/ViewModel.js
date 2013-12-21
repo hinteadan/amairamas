@@ -23,7 +23,9 @@
                 { Label: 'Dec', Index: 11 }
             ],
             weeks = ko.observableArray([]),
-            selectedDate = ko.observable(null);
+            selectedDate = ko.observable(null),
+            selectedMoment = ko.observable(null),
+            selectedMomentUtc = ko.observable(null);
 
         function initializeYears() {
             for (var y = year() ; y < year() + yearsToShow; y++) {
@@ -86,6 +88,8 @@
                 return;
             }
             selectedDate(generateDate(dayOfMonth));
+            selectedMoment(moment([year(), month(), dayOfMonth]));
+            selectedMomentUtc(moment.utc([year(), month(), dayOfMonth]));
         }
 
         function moveToNextYear() {
@@ -126,6 +130,13 @@
             year(now.year());
         }
 
+        function reset() {
+            moveToToday();
+            selectedDate(null);
+            selectedMoment(null);
+            selectedMomentUtc(null);
+        }
+
         initializeYears();
         initializeWeeks();
         month.subscribe(initializeWeeks);
@@ -140,7 +151,12 @@
         this.month = month;
         this.weeks = weeks;
         this.setDate = setSelectedDate;
-        this.selectedDate = selectedDate;
+        this.selectedDate = {
+            asDate: selectedDate,
+            asMoment: selectedMoment,
+            asMomentUtc: selectedMomentUtc
+        };
+        this.reset = reset;
         this.nextMonth = moveToNextMonth;
         this.nextYear = moveToNextYear;
         this.prevMonth = moveToPrevMonth;

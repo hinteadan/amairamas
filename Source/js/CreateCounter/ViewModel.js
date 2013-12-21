@@ -39,6 +39,7 @@
             self.minute(now.minute());
             self.second(now.second());
             self.title('');
+            calendarViewModel.reset();
         }
 
         this.calendar = calendarViewModel;
@@ -62,13 +63,13 @@
                 notify.warning('Please enter a title for the event');
                 return;
             }
-            if (chk.isEmpty(calendarViewModel.selectedDate())) {
+            if (chk.isEmpty(calendarViewModel.selectedDate.asDate())) {
                 notify.warning('Select a date first');
                 return;
             }
-            var date = calendarViewModel.selectedDate(),
-                eventMoment = moment.utc([calendarViewModel.year(), this.month().index, this.day(), this.hour(), this.minute(), this.second()]);
 
+            var eventMoment = calendarViewModel.selectedDate.asMomentUtc();
+            
             try
             {
                 counter
