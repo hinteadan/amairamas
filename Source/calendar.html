@@ -14,8 +14,8 @@
             <tr>
                 <th colspan="7" class="text-center">
                     <div class="inline-block hover-hide">
-                        <button class="btn btn-link clickable glass">&laquo;</button>
-                        <button class="btn btn-link clickable glass">&lsaquo;</button>
+                        <button class="btn btn-link clickable glass" data-bind="click: prevYear">&laquo;</button>
+                        <button class="btn btn-link clickable glass" data-bind="click: prevMonth">&lsaquo;</button>
 
                         <div class="strong hideable onHover selectable" data-bind="text: months[month()].Label"></div>
                         <select class="strong hideable text-center" data-bind="options: months, value: month, optionsValue: 'Index', optionsText: 'Label'"></select>
@@ -23,8 +23,8 @@
                         <div class="strog hideable onHover selectable strong" data-bind="text: year"></div>
                         <select class="strog hideable text-center strong" data-bind="options: years, value: year"></select>
 
-                        <button class="btn btn-link clickable glass">&rsaquo;</button>
-                        <button class="btn btn-link clickable glass">&raquo;</button>
+                        <button class="btn btn-link clickable glass" data-bind="click: nextMonth">&rsaquo;</button>
+                        <button class="btn btn-link clickable glass" data-bind="click: nextYear">&raquo;</button>
                     </div>
                 </th>
             </tr>

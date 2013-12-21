@@ -67,6 +67,39 @@
             selectedDate(generateDate(dayOfMonth));
         }
 
+        function moveToNextYear() {
+            if(year() === years()[years().length - 1]){
+                return;
+            }
+            year(year() + 1);
+        }
+        function moveToPrevYear() {
+            if (year() === years()[0]) {
+                return;
+            }
+            year(year() - 1);
+        }
+
+        function moveToNextMonth(){
+            if(month() < 11){
+                month(month() + 1);
+            }
+            else {
+                month(0);
+                moveToNextYear();
+            }
+        }
+
+        function moveToPrevMonth() {
+            if (month() > 0) {
+                month(month() - 1);
+            }
+            else {
+                month(11);
+                moveToPrevYear();
+            }
+        }
+
         initializeYears();
         initializeWeeks();
 
@@ -80,6 +113,10 @@
         this.weeks = weeks;
         this.setDate = setSelectedDate;
         this.selectedDate = selectedDate;
+        this.nextMonth = moveToNextMonth;
+        this.nextYear = moveToNextYear;
+        this.prevMonth = moveToPrevMonth;
+        this.prevYear = moveToPrevYear;
     }
 
     ko.applyBindings(new ViewModel());
