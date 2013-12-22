@@ -86,6 +86,6 @@
         };
     }
 
-    ko.applyBindings(new ViewModel(new ds.Store(this.app.config.connectionString.dbName), new this.model.CalendarViewModel()));
+    ko.applyBindings(new ViewModel(new ds.Store(this.app.config.connectionString.dbName, this.app.config.connectionString.httpDataStore), new this.model.CalendarViewModel()));
 
 }).call(this, this.ko, this.moment, this._, this.Counter, this.DataStore, this.H.Check, this.notify);

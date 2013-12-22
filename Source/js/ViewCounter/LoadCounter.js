@@ -37,8 +37,6 @@
     }
 
     this.Counter = this.Counter || {};
-    this.Counter.load = function (store) {
-        return new LoadCounter(store);
-    };
+    this.Counter.load = LoadCounter;
 
 }).call(this, this.H.Check, this.DataStore);

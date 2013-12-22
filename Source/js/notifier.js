@@ -49,6 +49,9 @@
         this.warning = function (message) {
             notifyMessage(message, noteType.warning);
         };
+        this.error = function (message) {
+            notifyMessage(message, noteType.error);
+        };
         this.type = noteType;
     }
 
