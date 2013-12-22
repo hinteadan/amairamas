@@ -12,6 +12,9 @@
         this.endsOnAsUnix = endsOn.unix();
         this.title = title;
         this.description = description;
+        this.endsOnMoment = function () {
+            return endsOn;
+        };
 
         this.Meta = function () {
             return {
