@@ -25,6 +25,17 @@ table.v-align-m > tbody > tr > td{
 	cursor: pointer;
 }
 
+.indicator{
+	float: right;
+	visibility: hidden;
+	width: 4px;
+	height: 4px;
+	background-color: black;
+}
+.selected .indicator{
+	visibility: visible;
+}
+
 .day.clickable:hover{
 	background-color:#f4f4f4 ;
 }
@@ -44,6 +55,12 @@ table.v-align-m > tbody > tr > td{
 }
 .day3{
 	font-size: 1.2em;
+}
+.day .day-label{
+	height: 45px;
+	line-height: 50px;
+	vertical-align: middle;
+	text-align: center;
 }
 
 .hover-hide .hideable{

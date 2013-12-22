@@ -70,12 +70,24 @@
             return Math.abs(today() - day);
         }
 
-        function generateDayCssClass(day) {
-            var level = calculateDayLevel(day);
-            if(level > 3){
-                return day ? 'clickable' : null;
+        function isDaySelected(dayToCheck) {
+            if (!dayToCheck) {
+                return false;
             }
-            return 'day' + level + ' clickable';
+            return moment([year(), month(), dayToCheck]).isSame(selectedMoment());
+        }
+
+        function generateDayCssClass(day) {
+            if (chk.isEmpty(day)) {
+                return null;
+            }
+            var css = 'day clickable',
+                level = calculateDayLevel(day);
+
+            css += isDaySelected(day) ? ' selected ' : '';
+            css += level <= 3 ? ' day' + level : '';
+
+            return css;
         }
 
         function generateDate(dayOfMonth, mt, y, h, m, s) {

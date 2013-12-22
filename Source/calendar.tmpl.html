@@ -27,7 +27,10 @@
     </thead>
     <tbody data-bind="foreach: weeks">
         <tr data-bind="foreach: $data">
-            <td class="day text-center" data-bind="text: $data, css: $parents[1].dayClass($data), click: $parents[1].setDate"></td>
+            <td class="day text-center" data-bind="css: $parents[1].dayClass($data), click: $parents[1].setDate">
+                <div class="day-label" data-bind="text: $data"></div>
+                <div class="indicator"></div>
+            </td>
         </tr>
     </tbody>
 </table>
