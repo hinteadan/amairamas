@@ -16,3 +16,4 @@
 
 /// <reference path="js/CreateCounter/ViewModel.js" />
 /// <reference path="js/Calendar/ViewModel.js" />
+/// <reference path="js/BrowseCounters/ViewModel.js" />
