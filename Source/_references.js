@@ -13,7 +13,7 @@
 /// <reference path="js/ViewCounter/LoadCounter.js" />
 /// <reference path="js/QueryCounters.js" />
 /// <reference path="js/notifier.js" />
-
 /// <reference path="js/CreateCounter/ViewModel.js" />
 /// <reference path="js/Calendar/ViewModel.js" />
+/// <reference path="js/BrowseCounters/SearchCounters.js" />
 /// <reference path="js/BrowseCounters/ViewModel.js" />
