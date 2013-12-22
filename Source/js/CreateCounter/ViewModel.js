@@ -1,6 +1,12 @@
 ﻿(function (ko, moment, _, counter, ds, chk, notify, undefined) {
     'use strict';
 
+    var window = this.window;
+
+    function redirectTo(url) {
+        window.location.href = url;
+    }
+
     function Month(name, index) {
         this.name = name;
         this.index = index;
@@ -22,13 +28,19 @@
         var self = this,
             now = moment(),
             yearsToShow = 10,
-            months = fetchMonths();
+            months = fetchMonths(),
+            lastAddedId = ko.observable(null);
 
         function defaultResultHandler(result) {
             /// <param name='result' type='ds.OperationResult' />
             self.isSaving(false);
             notify.operation(result);
+            lastAddedId(result.data.Id);
             reset();
+        }
+
+        function goToLatestAddedEvent() {
+            redirectTo('view.html?e=' + lastAddedId());
         }
 
         function reset() {
@@ -56,6 +68,8 @@
         this.months = ko.observableArray(months);
         this.days = ko.observableArray(_.range(1, 31));
 
+        this.latestId = lastAddedId;
+        this.viewLatestEvent = goToLatestAddedEvent;
         this.isSaving = ko.observable(false);
 
         this.add = function () {
