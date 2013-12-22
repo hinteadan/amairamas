@@ -4,12 +4,15 @@
     function ViewModel(loadCounter, eventId) {
         /// <param name='loadCounter' type='useCase' />
         chk.notEmpty(loadCounter, 'loadCounter');
-        chk.notEmpty(eventId, 'eventId');
+        if (chk.isEmpty(eventId)) {
+            notify.error('Invalid event');
+            chk.notEmpty(eventId, 'eventId');
+        }
 
         var resolution = defaultInterval || 1000,
             title = ko.observable(null),
             description = ko.observable(null),
-            countdownFormatted = ko.observable('00:00:00');
+            countdownFormatted = ko.observable(null);
 
         function pad(v, desiredLength) {
             var length = desiredLength || 2,
