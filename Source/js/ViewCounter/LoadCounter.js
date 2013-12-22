@@ -1,4 +1,4 @@
-﻿(function (chk, ds, undefined) {
+﻿(function (chk, ds, model, undefined) {
     'use strict';
 
     function isFunction(f) {
@@ -21,10 +21,16 @@
                 doThisOnCallback = doThis;
             }
 
+            function createCounterFromEntity(entity){
+                ///<param name='entity' type='ds.Entity' />
+                chk.notEmpty(entity, 'entity');
+                return new model.Counter(entity.Data.endsOnAsJson, entity.Data.title, entity.Data.description);
+            }
+
             store.Load(id, function (result) {
                 ///<param name='result' type='ds.OperationResult' />
                 if (doThisOnCallback) {
-                    doThisOnCallback.call(result, result);
+                    doThisOnCallback.call(result, result, result.isSuccess ? createCounterFromEntity(result.data) : undefined);
                 }
             });
 
@@ -39,4 +45,4 @@
     this.Counter = this.Counter || {};
     this.Counter.load = LoadCounter;
 
-}).call(this, this.H.Check, this.DataStore);
+}).call(this, this.H.Check, this.DataStore, this.model);

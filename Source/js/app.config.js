@@ -8,7 +8,8 @@
         connectionString: {
             httpDataStore: 'http://localhost/HttpDataStore/',
             dbName: 'TrialAndError'
-        }
+        },
+        counterUpdateInterval: 1000
     };
 
     this.app = this.app || {};
