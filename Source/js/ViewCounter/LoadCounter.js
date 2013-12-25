@@ -24,7 +24,7 @@
             function createCounterFromEntity(entity){
                 ///<param name='entity' type='ds.Entity' />
                 chk.notEmpty(entity, 'entity');
-                return new model.Counter(entity.Data.endsOnAsJson, entity.Data.title, entity.Data.description);
+                return new model.Counter.fromDto(entity.Data);
             }
 
             store.Load(id, function (result) {

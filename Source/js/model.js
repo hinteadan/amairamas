@@ -4,8 +4,10 @@
     function Counter(to, title, description) {
         var endsOn = moment(to);
 
-        chk.condition(endsOn.isAfter(moment()), 'Counter must not end in the past');
-        chk.notEmpty(title, 'title');
+        if (arguments[arguments.length - 1] !== true) {
+            chk.condition(endsOn.isAfter(moment()), 'Counter must not end in the past');
+            chk.notEmpty(title, 'title');
+        }
 
         this.endsOn = to;
         this.endsOnAsJson = endsOn.toJSON();
@@ -23,6 +25,10 @@
                 endsOnAsUnix: this.endsOnAsUnix
             };
         };
+    }
+
+    Counter.fromDto = function (dto) {
+        return new Counter(dto.endsOnAsJson, dto.title, dto.description, true);
     }
 
     this.model = this.model || {};
