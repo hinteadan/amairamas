@@ -68,9 +68,10 @@
         initializeCounter();
 
         this.title = title;
+        this.description = description;
         this.countdown = countdownFormatted;
     }
 
-    this.ko.applyBindings(new ViewModel(new this.Counter.load(new this.ds.Store(this.app.config.connectionString.dbName, this.app.config.connectionString.httpDataStore)), eventId));
+    this.ko.applyBindings(new ViewModel(new this.Counter.load(new this.ds.Store(this.app.config.connectionString.dbName, this.app.config.connectionString.httpDataStore)), eventId), this.$('html')[0]);
 
 }).call(this, this.$.query.GET().e, this.H.Check, this.Counter, this.ko, this.notify, this.moment, this.app.config.counterUpdateInterval);
