@@ -239,6 +239,14 @@ module.exports = function (grunt) {
                         src: [
                             'generated/*'
                         ]
+                    },
+                    {
+                        expand: true,
+                        cwd: 'img/walls',
+                        dest: 'build/img/walls',
+                        src: [
+                            '*'
+                        ]
                     }
                 ]
             }
