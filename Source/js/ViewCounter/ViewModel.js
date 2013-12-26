@@ -14,7 +14,10 @@
             description = ko.observable(null),
             countdownFormatted = ko.observable(null),
             endsOnDateFormatted = ko.observable(null),
-            endsOnTimeFormatted = ko.observable(null);
+            endsOnTimeFormatted = ko.observable(null),
+            defaultMessageFor = {
+                unknownError: 'Some unknown error has occurred, please try again or contact us.'
+            };
 
         function pad(v, desiredLength) {
             var length = desiredLength || 2,
@@ -58,7 +61,7 @@
                     /// <param name='result' type='ds.OperationResult' />
                     /// <param name='counter' type='model.Counter' />
                     if (!result.isSuccess) {
-                        notify.error(result.reason);
+                        notify.error(result.reason || defaultMessageFor.unknownError);
                         return;
                     }
                     title(counter.title);
