@@ -12,7 +12,9 @@
         var resolution = defaultInterval || 1000,
             title = ko.observable(null),
             description = ko.observable(null),
-            countdownFormatted = ko.observable(null);
+            countdownFormatted = ko.observable(null),
+            endsOnDateFormatted = ko.observable(null),
+            endsOnTimeFormatted = ko.observable(null);
 
         function pad(v, desiredLength) {
             var length = desiredLength || 2,
@@ -61,6 +63,8 @@
                     }
                     title(counter.title);
                     description(counter.description);
+                    endsOnDateFormatted(counter.endsOnMoment().format('ddd, MMMM D, YYYY'));
+                    endsOnTimeFormatted(counter.endsOnMoment().format('HH:mm:ss'))
                     startCountdown(counter.endsOnMoment());
                 });
         }
@@ -70,6 +74,8 @@
         this.title = title;
         this.description = description;
         this.countdown = countdownFormatted;
+        this.endsOnDate = endsOnDateFormatted;
+        this.endsOnTime = endsOnTimeFormatted;
     }
 
     this.ko.applyBindings(new ViewModel(new this.Counter.load(new this.ds.Store(this.app.config.connectionString.dbName, this.app.config.connectionString.httpDataStore)), eventId), this.$('html')[0]);
