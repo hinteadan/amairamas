@@ -27,7 +27,7 @@
 
         function updateCounter(endDate) {
             if (moment().isAfter(endDate) || moment().isSame(endDate)) {
-                countdownFormatted('Event already happened on ' + endDate.format('MMMM Do, YYYY') + ' at ' + endDate.format('HH:mm:ss'));
+                countdownFormatted('Concluded!');
                 return false;
             }
 
