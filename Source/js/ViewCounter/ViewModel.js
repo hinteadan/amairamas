@@ -64,7 +64,7 @@
                     title(counter.title);
                     description(counter.description);
                     endsOnDateFormatted(counter.endsOnMoment().format('ddd, MMMM D, YYYY'));
-                    endsOnTimeFormatted(counter.endsOnMoment().format('HH:mm:ss'))
+                    endsOnTimeFormatted(counter.endsOnMoment().format('HH:mm:ss'));
                     startCountdown(counter.endsOnMoment());
                 });
         }

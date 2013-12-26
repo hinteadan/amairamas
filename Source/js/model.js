@@ -29,7 +29,7 @@
 
     Counter.fromDto = function (dto) {
         return new Counter(dto.endsOnAsJson, dto.title, dto.description, true);
-    }
+    };
 
     this.model = this.model || {};
     this.model.Counter = Counter;
