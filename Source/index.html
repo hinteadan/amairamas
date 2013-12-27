@@ -27,6 +27,26 @@
 
     <div class="container">
         <div class="row">&nbsp;</div>
+        <div class="row" data-bind="foreach: events">
+            <div class="tile-space" data-bind="foreach: counters">
+                <!-- ko if: !length -->
+                <div class="well tile clickable" data-bind="css: type.css">
+                    <h1 data-bind="text: counter.title"></h1>
+                    <p data-bind="text: counter.description"></p>
+                    <em class="footer" data-bind="text: endsOnFormatted"></em>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: length -->
+                <div class="tile-space" data-bind="foreach: $data">
+                    <div class="well tile clickable" data-bind="css: type.css">
+                        <h1 data-bind="text: counter.title"></h1>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+
+
         <div class="row">
             <div class="tile-space">
                 <div class="well tile clickable tile-large">
@@ -77,7 +97,7 @@
                 </div>
                 <div class="well tile clickable tile-medium">test</div>
                 <div class="well tile clickable tile-wide">test</div>
-                </div>
+            </div>
             <div class="tile-space">
                 <div class="well tile clickable tile-small">test</div>
                 <div class="well tile clickable tile-small">test</div>
