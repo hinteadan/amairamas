@@ -57,7 +57,16 @@
                 new EventTile(dummyCounter, tileType.small),
                 new EventTile(dummyCounter, tileType.small),
                 new EventTile(dummyCounter, tileType.small),
+                new EventTile(dummyCounter, tileType.small),
                 new EventTile(dummyCounter, tileType.medium)
+            ]),
+            new EventTileGroup([new EventTile(dummyCounter, tileType.large)]),
+            new EventTileGroup([new EventTile(dummyCounter, tileType.large)]),
+            new EventTileGroup([new EventTile(dummyCounter, tileType.large)]),
+            new EventTileGroup([
+                new EventTile(dummyCounter, tileType.medium),
+                new EventTile(dummyCounter, tileType.medium),
+                new EventTile(dummyCounter, tileType.wide)
             ]),
         ]);
 
