@@ -10,8 +10,8 @@
         }
 
         var resolution = defaultInterval || 1000,
-            title = ko.observable(null),
-            description = ko.observable(null),
+            title = ko.observable('Loading event...'),
+            description = ko.observable('Please wait...'),
             countdownFormatted = ko.observable(null),
             endsOnDateFormatted = ko.observable(null),
             endsOnTimeFormatted = ko.observable(null),
