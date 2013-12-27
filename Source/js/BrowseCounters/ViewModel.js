@@ -1,5 +1,11 @@
-﻿(function (ko, chk, useCase, undefined) {
+﻿(function (ko, chk, useCase, _, notify, undefined) {
     'use strict';
+
+    function resultModel(id, counter) {
+        /// <param name='counter' type='model.Counter' />
+        this.id = '';
+        this.counter = counter;
+    }
 
     var dummyCounter = new this.model.Counter(new Date(2013, 12, 31), 'Happy New Year !'),
         tileType = {
@@ -49,6 +55,9 @@
         }
 
         this.counters = groupedCounters;
+        this.availableQuadrants = function () {
+            return availableQuadrants;
+        };
     }
 
     function ViewModel(search) {
@@ -75,10 +84,92 @@
             ]),
         ]);
 
+        function generateLargeTiles(searchResults) {
+            /// <param name='searchResults' type='Array' elementType='resultModel' />
+            return _.map(searchResults, function (r) {
+                return new EventTileGroup([
+                    new EventTile(r.id, r.counter, tileType.large)
+                ]);
+            });
+        }
+
+        function generateRandomTileGroups(searchResults) {
+            /// <param name='searchResults' type='Array' elementType='resultModel' />
+            var countLarge = Math.floor(0.15 * searchResults.length),
+                countWide = Math.floor(0.35 * searchResults.length),
+                countMedium = Math.floor(0.4 * searchResults.length),
+                countSmall = searchResults.length - countLarge - countWide - countMedium,
+                group = {
+                    /// <field type='Array' elementType='EventTileGroup' />
+                    large: [],
+                    /// <field type='Array' elementType='EventTileGroup' />
+                    wide: [],
+                    /// <field type='Array' elementType='EventTileGroup' />
+                    medium: [],
+                    /// <field type='Array' elementType='EventTileGroup' />
+                    small: []
+                };
+
+            for (var i = 0; i < countLarge; i++) {
+                group.large.push(new EventTileGroup([
+                    new EventTile(searchResults[i].id, searchResults[i].counter, tileType.large)
+                ]));
+            }
+            for (var i = countLarge; i < countLarge + countWide; i++) {
+                var tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.wide),
+                    last = group.wide.length ? group.wide[group.wide.length - 1] : null;
+                if (last && last.availableQuadrants() >= tile.type.quadrants) {
+                    group.wide[group.wide.length - 1] = new EventTileGroup(_.union(last.counters, [tile]));
+                }
+                else {
+                    group.wide.push(new EventTileGroup([tile]));
+                }
+            }
+            for (var i = countLarge + countWide; i < countLarge + countWide + countMedium; i++) {
+                var tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.medium),
+                    last = group.medium.length ? group.medium[group.medium.length - 1] : null;
+                if (last && last.availableQuadrants() >= tile.type.quadrants) {
+                    group.medium[group.medium.length - 1] = new EventTileGroup(_.union(last.counters, [tile]));
+                }
+                else {
+                    group.medium.push(new EventTileGroup([tile]));
+                }
+            }
+            for (var i = countLarge + countWide + countMedium; i < searchResults.length; i++) {
+                var tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.small),
+                    last = group.small.length ? group.small[group.small.length - 1] : null;
+                if (last && last.availableQuadrants() >= tile.type.quadrants) {
+                    group.small[group.small.length - 1] = new EventTileGroup(_.union(_.flatten(last.counters), [tile]));
+                }
+                else {
+                    group.small.push(new EventTileGroup([tile]));
+                }
+            }
+
+            return _.union(group.large, group.wide, group.medium, group.small);
+        }
+
+        function generateTileGroups(searchResults) {
+            /// <param name='searchResults' type='Array' elementType='resultModel' />
+            searchResults.sort(function (a, b) {
+                return a.counter.endsOnAsUnix < b.counter.endsOnAsUnix ? 1 :
+                    a.counter.endsOnAsUnix > b.counter.endsOnAsUnix ? -1 : 0;
+            });
+            if (searchResults.length <= 6) {
+                return generateLargeTiles(searchResults);
+            }
+            return generateRandomTileGroups(searchResults);
+        }
+
         search
             .all()
             .then(function (result, entries) {
-            
+                /// <param name='result' type='DataStore.OperationResult' />
+                if (!result.isSuccess) {
+                    notify.error('Cannot load events because ' + result.reason);
+                    return;
+                }
+                events(generateTileGroups(entries));
             });
 
         this.events = events;
@@ -86,4 +177,4 @@
 
     this.ko.applyBindings(new ViewModel(new useCase(new this.ds.Store(this.app.config.connectionString.dbName, this.app.config.connectionString.httpDataStore))));
 
-}).call(this, this.ko, this.H.Check, this.Counter.search);
+}).call(this, this.ko, this.H.Check, this.Counter.search, this._, this.notify);

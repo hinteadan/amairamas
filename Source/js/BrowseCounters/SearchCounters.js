@@ -1,4 +1,4 @@
-﻿(function (_, query, model, chk, undefined) {
+﻿(function (query, model, chk, undefined) {
     'use strict';
 
     function isFunction(f) {
@@ -20,11 +20,16 @@
                 doThisOnCallback = doThis;
             }
 
-            function createCounterFromEntityMeta(metaEntry) {
-                chk.notEmpty(metaEntry, 'metaEntry');
-                var entry = {};
-                entry[metaEntry.Key] = model.Counter.fromDtoMeta(metaEntry.Value)
-                return entry;
+            function mapQueryResultsToCounters(queryResults) {
+                chk.notEmpty(queryResults, 'queryResults');
+                var counters = [];
+                for (var i = 0; i < queryResults.length; i++) {
+                    counters.push({
+                        id: queryResults[i].Key,
+                        counter: model.Counter.fromDtoMeta(queryResults[i].Value)
+                    });
+                }
+                return counters;
             }
 
             query
@@ -32,7 +37,7 @@
                 .then(function (result) {
                     /// <param name='result' type='DataStore.OperationResult' />
                     if (doThisOnCallback) {
-                        doThisOnCallback.call(result, result, result.isSuccess ? _.map(result.data, createCounterFromEntityMeta) : undefined);
+                        doThisOnCallback.call(result, result, result.isSuccess ? mapQueryResultsToCounters(result.data) : undefined);
                     }
                 });
 
@@ -47,4 +52,4 @@
     this.Counter = this.Counter || {};
     this.Counter.search = SearchCounters;
 
-}).call(this, this._, this.Counter.Query, this.model, this.H.Check);
+}).call(this, this.Counter.Query, this.model, this.H.Check);
