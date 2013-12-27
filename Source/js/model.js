@@ -31,6 +31,10 @@
         return new Counter(dto.endsOnAsJson, dto.title, dto.description, true);
     };
 
+    Counter.fromDtoMeta = function (meta) {
+        return new Counter(meta.endsOn, meta.title, null, true);
+    };
+
     this.model = this.model || {};
     this.model.Counter = Counter;
 

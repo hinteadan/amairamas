@@ -75,13 +75,14 @@
     }
 
     this.Counter = this.Counter || {};
-    this.Counter.findFrom = function (store) {
+    this.Counter.Query = this.Counter.Query || {};
+    this.Counter.Query.findFrom = function (store) {
         return new LoadCounter(store);
     };
-    this.Counter.findAllFrom = function (store) {
+    this.Counter.Query.findAllFrom = function (store) {
         return new QueryCounters(ds.chainBy.And, store);
     };
-    this.Counter.findAnyFrom = function (store) {
+    this.Counter.Query.findAnyFrom = function (store) {
         return new QueryCounters(ds.chainBy.Or, store);
     };
 

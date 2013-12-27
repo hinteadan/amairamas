@@ -1,4 +1,4 @@
-﻿(function (ko, chk, undefined) {
+﻿(function (ko, chk, useCase, undefined) {
     'use strict';
 
     var dummyCounter = new this.model.Counter(new Date(2013, 12, 31), 'Happy New Year !'),
@@ -9,11 +9,13 @@
             small: { css: 'tile-small', quadrants: 0.25 }
         };
 
-    function EventTile(counter, type){
+    function EventTile(id, counter, type){
         /// <param name='counter' type='model.Counter' />
+        chk.notEmpty(id, 'id');
         chk.notEmpty(counter, 'counter');
         chk.notEmpty(type, 'type');
 
+        this.id = id;
         this.counter = counter;
         this.endsOnFormatted = counter.endsOnMoment().format('ddd, MMMM D, YYYY');
         this.type = type;
@@ -49,30 +51,39 @@
         this.counters = groupedCounters;
     }
 
-    function ViewModel() {
+    function ViewModel(search) {
+        /// <param name='search' type='useCase' />
+        chk.notEmpty(search, 'search');
+
         var events = ko.observableArray([
-            new EventTileGroup([new EventTile(dummyCounter, tileType.wide), new EventTile(dummyCounter, tileType.wide)]),
+            new EventTileGroup([new EventTile('test', dummyCounter, tileType.wide), new EventTile('test', dummyCounter, tileType.wide)]),
             new EventTileGroup([
-                new EventTile(dummyCounter, tileType.wide),
-                new EventTile(dummyCounter, tileType.small),
-                new EventTile(dummyCounter, tileType.small),
-                new EventTile(dummyCounter, tileType.small),
-                new EventTile(dummyCounter, tileType.small),
-                new EventTile(dummyCounter, tileType.medium)
+                new EventTile('test', dummyCounter, tileType.wide),
+                new EventTile('test', dummyCounter, tileType.small),
+                new EventTile('test', dummyCounter, tileType.small),
+                new EventTile('test', dummyCounter, tileType.small),
+                new EventTile('test', dummyCounter, tileType.small),
+                new EventTile('test', dummyCounter, tileType.medium)
             ]),
-            new EventTileGroup([new EventTile(dummyCounter, tileType.large)]),
-            new EventTileGroup([new EventTile(dummyCounter, tileType.large)]),
-            new EventTileGroup([new EventTile(dummyCounter, tileType.large)]),
+            new EventTileGroup([new EventTile('test', dummyCounter, tileType.large)]),
+            new EventTileGroup([new EventTile('test', dummyCounter, tileType.large)]),
+            new EventTileGroup([new EventTile('test', dummyCounter, tileType.large)]),
             new EventTileGroup([
-                new EventTile(dummyCounter, tileType.medium),
-                new EventTile(dummyCounter, tileType.medium),
-                new EventTile(dummyCounter, tileType.wide)
+                new EventTile('test', dummyCounter, tileType.medium),
+                new EventTile('test', dummyCounter, tileType.medium),
+                new EventTile('test', dummyCounter, tileType.wide)
             ]),
         ]);
+
+        search
+            .all()
+            .then(function (result, entries) {
+            
+            });
 
         this.events = events;
     }
 
-    this.ko.applyBindings(new ViewModel());
+    this.ko.applyBindings(new ViewModel(new useCase(new this.ds.Store(this.app.config.connectionString.dbName, this.app.config.connectionString.httpDataStore))));
 
-}).call(this, this.ko, this.H.Check);
+}).call(this, this.ko, this.H.Check, this.Counter.search);
