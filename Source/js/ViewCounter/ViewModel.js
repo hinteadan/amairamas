@@ -1,6 +1,11 @@
 ﻿(function (eventId, chk, useCase, ko, notify, moment, defaultInterval, undefined) {
     'use strict';
 
+    function momentUtc() {
+        var now = moment();
+        return moment.utc([now.year(), now.month(), now.date(), now.hour(), now.minute(), now.second()]);
+    }
+
     function ViewModel(loadCounter, eventId) {
         /// <param name='loadCounter' type='useCase' />
         chk.notEmpty(loadCounter, 'loadCounter');
@@ -29,12 +34,12 @@
         }
 
         function updateCounter(endDate) {
-            if (moment.utc().isAfter(endDate) || moment().utc().isSame(endDate)) {
+            if (momentUtc().isAfter(endDate) || momentUtc().isSame(endDate)) {
                 countdownFormatted('Concluded!');
                 return false;
             }
 
-            var now = moment.utc(),
+            var now = momentUtc(),
                 hours = pad(endDate.diff(now, 'hours')),
                 minutes = pad(endDate.diff(now, 'minutes') - 60 * hours),
                 seconds = pad(endDate.diff(now, 'seconds') - hours * 60 * 60 - 60 * minutes)/*,
