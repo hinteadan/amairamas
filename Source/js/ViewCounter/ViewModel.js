@@ -29,12 +29,12 @@
         }
 
         function updateCounter(endDate) {
-            if (moment().isAfter(endDate) || moment().isSame(endDate)) {
+            if (moment.utc().isAfter(endDate) || moment().utc().isSame(endDate)) {
                 countdownFormatted('Concluded!');
                 return false;
             }
 
-            var now = moment(),
+            var now = moment.utc(),
                 hours = pad(endDate.diff(now, 'hours')),
                 minutes = pad(endDate.diff(now, 'minutes') - 60 * hours),
                 seconds = pad(endDate.diff(now, 'seconds') - hours * 60 * 60 - 60 * minutes)/*,

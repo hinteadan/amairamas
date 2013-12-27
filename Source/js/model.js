@@ -2,10 +2,10 @@
     'use strict';
 
     function Counter(to, title, description) {
-        var endsOn = moment(to);
+        var endsOn = moment.utc(to);
 
         if (arguments[arguments.length - 1] !== true) {
-            chk.condition(endsOn.isAfter(moment()), 'Counter must not end in the past');
+            chk.condition(endsOn.isAfter(moment.utc()), 'Counter must not end in the past');
             chk.notEmpty(title, 'title');
         }
 
