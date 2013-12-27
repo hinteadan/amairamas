@@ -156,6 +156,13 @@ body.event, html.event {
 	float: left;
 	position: relative;
 }
+.tile.clickable {
+	opacity: 0.88;
+}
+.tile.clickable:hover {
+	opacity: inherit;
+}
+
 .tile .footer{
 	bottom: 19px;
 	padding-right: 19px;
