@@ -110,6 +110,20 @@
                     small: []
                 };
 
+            function lastGroupWithSpaceForTile(tile) {
+                /// <param name='tile' type='EventTile' />
+                if (group.wide.length && _.last(group.wide).availableQuadrants() >= tile.type.quadrants) {
+                    return group.wide;
+                }
+                if (group.medium.length && _.last(group.medium).availableQuadrants() >= tile.type.quadrants) {
+                    return group.medium;
+                }
+                if (group.small.length && _.last(group.small).availableQuadrants() >= tile.type.quadrants) {
+                    return group.small;
+                }
+                return null;
+            }
+
             for (var i = 0; i < countLarge; i++) {
                 group.large.push(new EventTileGroup([
                     new EventTile(searchResults[i].id, searchResults[i].counter, tileType.large)
@@ -117,9 +131,10 @@
             }
             for (var i = countLarge; i < countLarge + countWide; i++) {
                 var tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.wide),
-                    last = group.wide.length ? group.wide[group.wide.length - 1] : null;
+                    groupWithSpaceAvaialable = lastGroupWithSpaceForTile(tile),
+                    last = groupWithSpaceAvaialable ? groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] : null;
                 if (last && last.availableQuadrants() >= tile.type.quadrants) {
-                    group.wide[group.wide.length - 1] = new EventTileGroup(_.union(last.counters, [tile]));
+                    groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] = new EventTileGroup(_.union(last.counters, [tile]));
                 }
                 else {
                     group.wide.push(new EventTileGroup([tile]));
@@ -127,9 +142,10 @@
             }
             for (var i = countLarge + countWide; i < countLarge + countWide + countMedium; i++) {
                 var tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.medium),
-                    last = group.medium.length ? group.medium[group.medium.length - 1] : null;
+                    groupWithSpaceAvaialable = lastGroupWithSpaceForTile(tile),
+                    last = groupWithSpaceAvaialable ? groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] : null;
                 if (last && last.availableQuadrants() >= tile.type.quadrants) {
-                    group.medium[group.medium.length - 1] = new EventTileGroup(_.union(last.counters, [tile]));
+                    groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] = new EventTileGroup(_.union(last.counters, [tile]));
                 }
                 else {
                     group.medium.push(new EventTileGroup([tile]));
@@ -137,9 +153,10 @@
             }
             for (var i = countLarge + countWide + countMedium; i < searchResults.length; i++) {
                 var tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.small),
-                    last = group.small.length ? group.small[group.small.length - 1] : null;
+                    groupWithSpaceAvaialable = lastGroupWithSpaceForTile(tile),
+                    last = groupWithSpaceAvaialable ? groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] : null;
                 if (last && last.availableQuadrants() >= tile.type.quadrants) {
-                    group.small[group.small.length - 1] = new EventTileGroup(_.union(_.flatten(last.counters), [tile]));
+                    groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] = new EventTileGroup(_.union(_.flatten(last.counters), [tile]));
                 }
                 else {
                     group.small.push(new EventTileGroup([tile]));
