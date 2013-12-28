@@ -15,7 +15,7 @@
     }
     /* jshint ignore:end */
 
-    var loaderCounter = new this.model.Counter(new Date(2200, 12, 31), 'Loading events', 'Please Wait...'),
+    var loaderCounter = new this.model.Counter(new Date(2100, 1), 'Loading events', 'Please Wait...'),
         tileType = {
             large: { css: 'tile-large', quadrants: 4 },
             wide: { css: 'tile-wide', quadrants: 2 },
