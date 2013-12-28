@@ -13,7 +13,7 @@
         this.counter = counter;
     }
 
-    var dummyCounter = new this.model.Counter(new Date(2013, 12, 31), 'Happy New Year !'),
+    var loaderCounter = new this.model.Counter(new Date(2200, 12, 31), 'Loading events', 'Please Wait...'),
         tileType = {
             large: { css: 'tile-large', quadrants: 4 },
             wide: { css: 'tile-wide', quadrants: 2 },
@@ -76,23 +76,7 @@
         chk.notEmpty(search, 'search');
 
         var events = ko.observableArray([
-            new EventTileGroup([new EventTile('test', dummyCounter, tileType.wide), new EventTile('test', dummyCounter, tileType.wide)]),
-            new EventTileGroup([
-                new EventTile('test', dummyCounter, tileType.wide),
-                new EventTile('test', dummyCounter, tileType.small),
-                new EventTile('test', dummyCounter, tileType.small),
-                new EventTile('test', dummyCounter, tileType.small),
-                new EventTile('test', dummyCounter, tileType.small),
-                new EventTile('test', dummyCounter, tileType.medium)
-            ]),
-            new EventTileGroup([new EventTile('test', dummyCounter, tileType.large)]),
-            new EventTileGroup([new EventTile('test', dummyCounter, tileType.large)]),
-            new EventTileGroup([new EventTile('test', dummyCounter, tileType.large)]),
-            new EventTileGroup([
-                new EventTile('test', dummyCounter, tileType.medium),
-                new EventTile('test', dummyCounter, tileType.medium),
-                new EventTile('test', dummyCounter, tileType.wide)
-            ]),
+            new EventTileGroup([new EventTile('Loader', loaderCounter, tileType.large)]),
         ]);
 
         function generateLargeTiles(searchResults) {
@@ -174,7 +158,7 @@
                 }
             }
 
-            return _.union(group.large, group.wide, group.medium, group.small);
+            return _.shuffle(_.union(group.large, group.wide, group.medium, group.small));
         }
 
         function generateTileGroups(searchResults) {
