@@ -107,8 +107,8 @@
         function generateRandomTileGroups(searchResults) {
             /// <param name='searchResults' type='Array' elementType='resultModel' />
             var countLarge = Math.floor(0.15 * searchResults.length),
-                countWide = Math.floor(0.35 * searchResults.length),
-                countMedium = Math.floor(0.4 * searchResults.length),
+                countWide = Math.floor(0.25 * searchResults.length),
+                countMedium = Math.floor(0.35 * searchResults.length),
                 countSmall = searchResults.length - countLarge - countWide - countMedium,
                 group = {
                     /// <field type='Array' elementType='EventTileGroup' />
