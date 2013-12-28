@@ -30,7 +30,7 @@
         <div class="row" data-bind="foreach: events">
             <div class="tile-space" data-bind="foreach: counters">
                 <!-- ko if: !length -->
-                <div class="well tile clickable" data-bind="css: type.css">
+                <div class="well tile clickable" data-bind="css: type.css, click: view">
                     <h1 data-bind="text: counter.title"></h1>
                     <p data-bind="text: counter.description"></p>
                     <em class="footer" data-bind="text: endsOnFormatted"></em>
@@ -38,7 +38,7 @@
                 <!-- /ko -->
                 <!-- ko if: length -->
                 <div class="tile-space" data-bind="foreach: $data">
-                    <div class="well tile clickable" data-bind="css: type.css">
+                    <div class="well tile clickable" data-bind="css: type.css, click: view">
                         <h1 data-bind="text: counter.title"></h1>
                     </div>
                 </div>

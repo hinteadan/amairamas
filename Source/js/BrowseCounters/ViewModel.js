@@ -1,6 +1,12 @@
 ﻿(function (ko, chk, useCase, _, notify, undefined) {
     'use strict';
 
+    var window = this.window;
+
+    function redirectTo(url) {
+        window.location.href = url;
+    }
+
     function resultModel(id, counter) {
         /// <param name='counter' type='model.Counter' />
         this.id = '';
@@ -21,10 +27,15 @@
         chk.notEmpty(counter, 'counter');
         chk.notEmpty(type, 'type');
 
+        function viewEvent() {
+            redirectTo('view.html?e=' + id);
+        }
+
         this.id = id;
         this.counter = counter;
         this.endsOnFormatted = counter.endsOnMoment().format('ddd, MMMM D, YYYY');
         this.type = type;
+        this.view = viewEvent;
     }
 
     function EventTileGroup(counters) {
