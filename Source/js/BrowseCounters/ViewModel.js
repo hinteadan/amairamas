@@ -1,4 +1,4 @@
-﻿(function (ko, chk, useCase, _, notify, undefined) {
+﻿(function (ko, chk, UseCase, _, notify, undefined) {
     'use strict';
 
     var window = this.window;
@@ -7,11 +7,13 @@
         window.location.href = url;
     }
 
-    function resultModel(id, counter) {
+    /* jshint ignore:start */
+    function ResultModel(id, counter) {
         /// <param name='counter' type='model.Counter' />
         this.id = '';
         this.counter = counter;
     }
+    /* jshint ignore:end */
 
     var loaderCounter = new this.model.Counter(new Date(2200, 12, 31), 'Loading events', 'Please Wait...'),
         tileType = {
@@ -72,7 +74,7 @@
     }
 
     function ViewModel(search) {
-        /// <param name='search' type='useCase' />
+        /// <param name='search' type='UseCase' />
         chk.notEmpty(search, 'search');
 
         var events = ko.observableArray([
@@ -80,7 +82,7 @@
         ]);
 
         function generateLargeTiles(searchResults) {
-            /// <param name='searchResults' type='Array' elementType='resultModel' />
+            /// <param name='searchResults' type='Array' elementType='ResultModel' />
             return _.map(searchResults, function (r) {
                 return new EventTileGroup([
                     new EventTile(r.id, r.counter, tileType.large)
@@ -89,11 +91,10 @@
         }
 
         function generateRandomTileGroups(searchResults) {
-            /// <param name='searchResults' type='Array' elementType='resultModel' />
+            /// <param name='searchResults' type='Array' elementType='ResultModel' />
             var countLarge = Math.floor(0.15 * searchResults.length),
                 countWide = Math.floor(0.25 * searchResults.length),
                 countMedium = Math.floor(0.35 * searchResults.length),
-                countSmall = searchResults.length - countLarge - countWide - countMedium,
                 group = {
                     /// <field type='Array' elementType='EventTileGroup' />
                     large: [],
@@ -124,34 +125,35 @@
                     new EventTile(searchResults[i].id, searchResults[i].counter, tileType.large)
                 ]));
             }
-            for (var i = countLarge; i < countLarge + countWide; i++) {
-                var tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.wide),
-                    groupWithSpaceAvaialable = lastGroupWithSpaceForTile(tile),
-                    last = groupWithSpaceAvaialable ? groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] : null;
+            var tile, groupWithSpaceAvailable, last;
+            for (i = countLarge; i < countLarge + countWide; i++) {
+                tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.wide);
+                groupWithSpaceAvailable = lastGroupWithSpaceForTile(tile);
+                last = groupWithSpaceAvailable ? groupWithSpaceAvailable[groupWithSpaceAvailable.length - 1] : null;
                 if (last && last.availableQuadrants() >= tile.type.quadrants) {
-                    groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] = new EventTileGroup(_.union(last.counters, [tile]));
+                    groupWithSpaceAvailable[groupWithSpaceAvailable.length - 1] = new EventTileGroup(_.union(last.counters, [tile]));
                 }
                 else {
                     group.wide.push(new EventTileGroup([tile]));
                 }
             }
-            for (var i = countLarge + countWide; i < countLarge + countWide + countMedium; i++) {
-                var tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.medium),
-                    groupWithSpaceAvaialable = lastGroupWithSpaceForTile(tile),
-                    last = groupWithSpaceAvaialable ? groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] : null;
+            for (i = countLarge + countWide; i < countLarge + countWide + countMedium; i++) {
+                tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.medium);
+                groupWithSpaceAvailable = lastGroupWithSpaceForTile(tile);
+                last = groupWithSpaceAvailable ? groupWithSpaceAvailable[groupWithSpaceAvailable.length - 1] : null;
                 if (last && last.availableQuadrants() >= tile.type.quadrants) {
-                    groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] = new EventTileGroup(_.union(last.counters, [tile]));
+                    groupWithSpaceAvailable[groupWithSpaceAvailable.length - 1] = new EventTileGroup(_.union(last.counters, [tile]));
                 }
                 else {
                     group.medium.push(new EventTileGroup([tile]));
                 }
             }
-            for (var i = countLarge + countWide + countMedium; i < searchResults.length; i++) {
-                var tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.small),
-                    groupWithSpaceAvaialable = lastGroupWithSpaceForTile(tile),
-                    last = groupWithSpaceAvaialable ? groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] : null;
+            for (i = countLarge + countWide + countMedium; i < searchResults.length; i++) {
+                tile = new EventTile(searchResults[i].id, searchResults[i].counter, tileType.small);
+                groupWithSpaceAvailable = lastGroupWithSpaceForTile(tile);
+                last = groupWithSpaceAvailable ? groupWithSpaceAvailable[groupWithSpaceAvailable.length - 1] : null;
                 if (last && last.availableQuadrants() >= tile.type.quadrants) {
-                    groupWithSpaceAvaialable[groupWithSpaceAvaialable.length - 1] = new EventTileGroup(_.union(_.flatten(last.counters), [tile]));
+                    groupWithSpaceAvailable[groupWithSpaceAvailable.length - 1] = new EventTileGroup(_.union(_.flatten(last.counters), [tile]));
                 }
                 else {
                     group.small.push(new EventTileGroup([tile]));
@@ -162,7 +164,7 @@
         }
 
         function generateTileGroups(searchResults) {
-            /// <param name='searchResults' type='Array' elementType='resultModel' />
+            /// <param name='searchResults' type='Array' elementType='ResultModel' />
             searchResults.sort(function (a, b) {
                 return a.counter.endsOnAsUnix < b.counter.endsOnAsUnix ? 1 :
                     a.counter.endsOnAsUnix > b.counter.endsOnAsUnix ? -1 : 0;
@@ -187,6 +189,6 @@
         this.events = events;
     }
 
-    this.ko.applyBindings(new ViewModel(new useCase(new this.ds.Store(this.app.config.connectionString.dbName, this.app.config.connectionString.httpDataStore))));
+    this.ko.applyBindings(new ViewModel(new UseCase(new this.ds.Store(this.app.config.connectionString.dbName, this.app.config.connectionString.httpDataStore))));
 
 }).call(this, this.ko, this.H.Check, this.Counter.search, this._, this.notify);
