@@ -7,7 +7,7 @@
     var appConfig = {
         connectionString: {
             httpDataStore: 'http://localhost/HttpDataStore/',
-            dbName: 'TrialAndError'
+            dbName: 'Events'
         },
         counterUpdateInterval: 1000
     };

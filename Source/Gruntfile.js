@@ -182,6 +182,7 @@ module.exports = function (grunt) {
                 files: {
                     'build/styles/main.css': [
                         'components/bootstrap/dist/css/bootstrap.css',
+                        'styles/{,*/}*.css',
                         '.tmp/styles/{,*/}*.css'
                     ]
                 }
