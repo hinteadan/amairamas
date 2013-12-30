@@ -13,3 +13,8 @@
 .social-share-options:hover {
     opacity: inherit;
 }
+
+.social-share-options > li {
+    height: 30px;
+    vertical-align: top;
+}
