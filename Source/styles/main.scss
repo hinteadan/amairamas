@@ -1,203 +1,230 @@
 @import "normalize-scss/normalize";
 
 body, h1, h2, h3, h4, h5, h6 {
-	font-family: Calibri, Verdana, Tahoma, Arial;
+    font-family: Calibri, Verdana, Tahoma, Arial;
 }
 
-.inline-block{
-	display: inline-block;
+.inline-block {
+    display: inline-block;
 }
 
 .strong {
-	font-weight: bold;
+    font-weight: bold;
 }
 
-table.calendar > tbody > tr > td{
-	width: 14%;
-	height: 50px;
-	-webkit-box-sizing: initial;
-	-moz-box-sizing: initial;
-	box-sizing: initial;
+.thumbnail {
+    width: auto;
+    height: 200px;
+}
+
+table.calendar > tbody > tr > td {
+    width: 14%;
+    height: 50px;
+    -webkit-box-sizing: initial;
+    -moz-box-sizing: initial;
+    box-sizing: initial;
 }
 
 .v-align-m,
-table.v-align-m > tbody > tr > td{
-	vertical-align: middle;
+table.v-align-m > tbody > tr > td {
+    vertical-align: middle;
 }
 
-.clickable{
-	cursor: pointer;
+.clickable {
+    cursor: pointer;
 }
 
-.indicator{
-	float: right;
-	visibility: hidden;
-	width: 4px;
-	height: 4px;
-	background-color: black;
-}
-.selected .indicator{
-	visibility: visible;
+.indicator {
+    float: right;
+    visibility: hidden;
+    width: 4px;
+    height: 4px;
+    background-color: black;
 }
 
-.day.clickable:hover{
-	background-color:#f4f4f4 ;
+.selected .indicator {
+    visibility: visible;
 }
 
-.day0{
-	font-size: 2.1em;
-	font-weight: bold;
-}
-.day0 small{
-	font-size: 0.3em;
-}
-.day1{
-	font-size: 1.75em;
-}
-.day2{
-	font-size: 1.5em;
-}
-.day3{
-	font-size: 1.2em;
-}
-.day .day-label{
-	height: 45px;
-	line-height: 50px;
-	vertical-align: middle;
-	text-align: center;
+.day.clickable:hover {
+    background-color: #f4f4f4;
 }
 
-.hover-hide .hideable{
-	width: 56px;
-	height: 21px;
-	border: none;
+.day0 {
+    font-size: 2.1em;
+    font-weight: bold;
 }
-.hover-hide .hideable.selectable {
-	padding-right: 16px;
+
+    .day0 small {
+        font-size: 0.3em;
+    }
+
+.day1 {
+    font-size: 1.75em;
 }
-.hover-hide select{
-	margin: 0px;
-	padding: 0px;
-	border: 0px;
+
+.day2 {
+    font-size: 1.5em;
+}
+
+.day3 {
+    font-size: 1.2em;
+}
+
+.day .day-label {
+    height: 45px;
+    line-height: 50px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.hover-hide .hideable {
+    width: 56px;
+    height: 21px;
+    border: none;
+}
+
+    .hover-hide .hideable.selectable {
+        padding-right: 16px;
+    }
+
+.hover-hide select {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
 }
 
 .hover-hide .hideable.onHover {
-	display: inherit;
+    display: inherit;
 }
+
 .hover-hide .hideable {
-	display: none;
+    display: none;
 }
 
 .hover-hide:hover .hideable.onHover {
-	display: none;
-}
-.hover-hide:hover .hideable {
-	display: inherit;
+    display: none;
 }
 
-.hover-hide .glass{
-	opacity: 0.1;
+.hover-hide:hover .hideable {
+    display: inherit;
 }
+
+.hover-hide .glass {
+    opacity: 0.1;
+}
+
 .hover-hide:hover .glass {
-	opacity: inherit;
+    opacity: inherit;
 }
 
 .wallpaper {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	z-index: -1;
-	opacity: 0.5;
-	background-color: black;
-	background-position: center center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+    opacity: 0.5;
+    background-color: black;
+    background-position: center center;
 }
 
 .event,
-.event h1, 
-.event h2, 
+.event h1,
+.event h2,
 .event h3 {
-	text-shadow: 0 0 3px black;
-	color: white;
+    text-shadow: 0 0 3px black;
+    color: white;
 }
+
 body.event, html.event {
-	height: 100%;
+    height: 100%;
 }
-.event h1{
-	font-size: 4em;
-	font-weight: bold;
+
+.event h1 {
+    font-size: 4em;
+    font-weight: bold;
 }
 
 .footer {
-	position: absolute;
-	bottom: 0px;
+    position: absolute;
+    bottom: 0px;
 }
 
 .footer-right {
-	right: 0px;
+    right: 0px;
 }
 
 .container-relative {
-	position: relative;
-	height: 100%;
+    position: relative;
+    height: 100%;
 }
 
 .tile-space {
-	float: left;
-	width: 293px;
-	height: 293px;
+    float: left;
+    width: 293px;
+    height: 293px;
 }
-.tile-space > .tile-space {
-	width: 146px;
-	height: 146px; 
-}
+
+    .tile-space > .tile-space {
+        width: 146px;
+        height: 146px;
+    }
 
 .tile {
-	margin: 0px 15px 15px 0px;
-	float: left;
-	position: relative;
-}
-.tile.clickable {
-	opacity: 0.88;
-}
-.tile.clickable:hover {
-	opacity: inherit;
+    margin: 0px 15px 15px 0px;
+    float: left;
+    position: relative;
 }
 
-.tile .footer{
-	bottom: 19px;
-	padding-right: 19px;
-}
-.tile h1 {
-	margin: 0px;
-	font-size: 1.5em;
-	font-weight: bold;
-}
+    .tile.clickable {
+        opacity: 0.88;
+    }
+
+        .tile.clickable:hover {
+            opacity: inherit;
+        }
+
+    .tile .footer {
+        bottom: 19px;
+        padding-right: 19px;
+    }
+
+    .tile h1 {
+        margin: 0px;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
 
 .tile-large {
-	width: 277px;
-	height: 277px;
+    width: 277px;
+    height: 277px;
 }
+
 .tile-wide {
-	width: 277px;
-	height: 131px;
+    width: 277px;
+    height: 131px;
 }
+
 .tile-medium {
-	width: 131px;
-	height: 131px;
-	font-size: 0.8em;
-	padding: 10px;
+    width: 131px;
+    height: 131px;
+    font-size: 0.8em;
+    padding: 10px;
 }
-.tile-medium .footer{
-	bottom: 10px;
-	padding-right: 10px;
-}
+
+    .tile-medium .footer {
+        bottom: 10px;
+        padding-right: 10px;
+    }
+
 .tile-small {
-	width: 58px;
-	height: 58px;
-	font-size: 0.5em;
-	padding: 5px;
+    width: 58px;
+    height: 58px;
+    font-size: 0.5em;
+    padding: 5px;
 }
-.tile-small h1 {
-	font-weight: normal;
-	overflow: hidden;
-}
+
+    .tile-small h1 {
+        font-weight: normal;
+        overflow: hidden;
+    }

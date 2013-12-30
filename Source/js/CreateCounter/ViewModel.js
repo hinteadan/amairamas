@@ -43,6 +43,13 @@
             redirectTo('view.html?e=' + lastAddedId());
         }
 
+        function isUrlStringValid(url) {
+            if (chk.isEmpty(url)) {
+                return false;
+            }
+            return /^https?:\/\/.+?/i.test(url);
+        }
+
         function reset() {
             self.year(now.year());
             self.month(months[now.month()]);
@@ -63,6 +70,7 @@
         this.minute = ko.observable(now.minute());
         this.second = ko.observable(now.second());
         this.title = ko.observable('');
+        this.wallpaperUrl = ko.observable(null);
 
         this.years = ko.observableArray(_.range(this.year(), this.year() + yearsToShow));
         this.months = ko.observableArray(months);
@@ -71,6 +79,7 @@
         this.latestId = lastAddedId;
         this.viewLatestEvent = goToLatestAddedEvent;
         this.isSaving = ko.observable(false);
+        this.isAdvanced = ko.observable(false);
 
         this.add = function () {
             if (chk.isEmpty(this.title())) {
@@ -89,6 +98,7 @@
                 counter
                     .addTo(dataStore)
                     .having(eventMoment.toDate(), this.title())
+                    .andDetails(this.wallpaperUrl())
                     .save(function () { self.isSaving(true); })
                     .then(defaultResultHandler);
             }

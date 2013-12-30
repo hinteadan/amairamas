@@ -35,14 +35,30 @@
         }
 
         this.having = function (endsOnDate, title, description) {
-            return {
-                save: function (butFirstDoThis) {
-                    var entity = createCounterEntity(endsOnDate, title, description);
-                    if (isFunction(butFirstDoThis)) {
-                        butFirstDoThis.call(undefined, entity);
-                    }
-                    return storeCounter(entity);
+
+            var beforeSaveQueue = [];
+
+            function saveCounter(butFirstDoThis) {
+                var entity = createCounterEntity(endsOnDate, title, description);
+                if (isFunction(butFirstDoThis)) {
+                    beforeSaveQueue.push(butFirstDoThis);
                 }
+                for (var i in beforeSaveQueue) {
+                    beforeSaveQueue[i].call(undefined, entity);
+                }
+                return storeCounter(entity);
+            }
+
+            return {
+                andDetails: function (wallpaperUrl) {
+                    beforeSaveQueue.push(function (entity) {
+                        entity.Data.wallUrl = wallpaperUrl;
+                    });
+                    return {
+                        save: saveCounter
+                    };
+                },
+                save: saveCounter
             };
         };
     }
