@@ -3,7 +3,7 @@
     z-index: 2;
     top: 0px;
     right: 0px;
-    padding: 10px 20px 0px 0px;
+    padding: 10px 0px 0px 0px;
 }
 
 .social-share-options {
@@ -15,6 +15,6 @@
 }
 
 .social-share-options > li {
-    height: 30px;
+    height: 22px;
     vertical-align: top;
 }
