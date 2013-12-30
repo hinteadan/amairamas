@@ -9,6 +9,7 @@
 /// <reference path="js/app.config.js" />
 /// <reference path="js/dataStore.js" />
 /// <reference path="js/model.js" />
+/// <reference path="js/SocialShare/SocialShare.js" />
 /// <reference path="js/CreateCounter/AddCounter.js" />
 /// <reference path="js/ViewCounter/LoadCounter.js" />
 /// <reference path="js/QueryCounters.js" />
