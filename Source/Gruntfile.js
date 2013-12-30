@@ -133,7 +133,8 @@ module.exports = function (grunt) {
                         'build/js/{,*/}*.js',
                         'build/styles/{,*/}*.css',
                         'build/img/{,*/}*.{png,jpg,jpeg,gif,webp}',
-                        'build/styles/fonts/*'
+                        'build/styles/fonts/*',
+                        '!build/img/walls/*'
                     ]
                 }
             }
