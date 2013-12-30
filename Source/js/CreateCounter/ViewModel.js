@@ -47,7 +47,7 @@
             if (chk.isEmpty(url)) {
                 return false;
             }
-            return /^https?:\/\/.+?/i.test(url);
+            return (/^https?:\/\/.+?/i).test(url);
         }
 
         function reset() {
@@ -95,12 +95,15 @@
             
             try
             {
-                counter
+                var c = counter
                     .addTo(dataStore)
-                    .having(eventMoment.toDate(), this.title())
-                    .andDetails(this.wallpaperUrl())
-                    .save(function () { self.isSaving(true); })
-                    .then(defaultResultHandler);
+                    .having(eventMoment.toDate(), this.title());
+                if(isUrlStringValid(this.wallpaperUrl())){
+                    c = c.andDetails(this.wallpaperUrl());
+                }
+
+                c.save(function () { self.isSaving(true); })
+                .then(defaultResultHandler);
             }
             catch(err)
             {
