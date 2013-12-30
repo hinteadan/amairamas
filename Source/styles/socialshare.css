@@ -1,0 +1,15 @@
+﻿.social-share-corner {
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    right: 0px;
+    padding: 10px 20px 0px 0px;
+}
+
+.social-share-options {
+    opacity: 0.25;
+}
+
+.social-share-options:hover {
+    opacity: inherit;
+}
