@@ -9,7 +9,8 @@
             httpDataStore: 'http://localhost/HttpDataStore/',
             dbName: 'Events'
         },
-        counterUpdateInterval: 1000
+        counterUpdateInterval: 1000,
+        defaultWallpaper: 'img/walls/Winter-Snow-Wallpaper-43.jpg'
     };
 
     this.app = this.app || {};

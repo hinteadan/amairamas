@@ -1,4 +1,4 @@
-﻿(function (chk, moment, undefined) {
+﻿(function (chk, moment, defaultWallpaper, undefined) {
     'use strict';
 
     function Counter(to, title, description) {
@@ -14,6 +14,7 @@
         this.endsOnAsUnix = endsOn.unix();
         this.title = title;
         this.description = description;
+        this.wallUrl = defaultWallpaper;
         this.endsOnMoment = function () {
             return endsOn;
         };
@@ -28,7 +29,11 @@
     }
 
     Counter.fromDto = function (dto) {
-        return new Counter(dto.endsOnAsJson, dto.title, dto.description, true);
+        var counter = new Counter(dto.endsOnAsJson, dto.title, dto.description, true);
+        if (dto.wallUrl) {
+            counter.wallUrl = dto.wallUrl;
+        }
+        return counter;
     };
 
     Counter.fromDtoMeta = function (meta) {
@@ -38,4 +43,4 @@
     this.model = this.model || {};
     this.model.Counter = Counter;
 
-}).call(this, this.H.Check, this.moment);
+}).call(this, this.H.Check, this.moment, this.app.config.defaultWallpaper);
