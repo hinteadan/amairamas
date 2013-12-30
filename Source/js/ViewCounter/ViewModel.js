@@ -1,4 +1,4 @@
-﻿(function (eventId, chk, useCase, ko, notify, moment, defaultInterval, sharing, undefined) {
+﻿(function (eventId, chk, useCase, ko, notify, moment, defaultInterval, sharing, defaultWallpaper, undefined) {
     'use strict';
 
     function momentUtc() {
@@ -20,6 +20,7 @@
             countdownFormatted = ko.observable(null),
             endsOnDateFormatted = ko.observable(null),
             endsOnTimeFormatted = ko.observable(null),
+            wallpaper = ko.observable(),
             defaultMessageFor = {
                 unknownError: 'Some unknown error has occurred, please try again or contact us.'
             };
@@ -71,6 +72,7 @@
                     }
                     title(counter.title);
                     description(counter.description);
+                    wallpaper(counter.wallUrl || defaultWallpaper);
                     endsOnDateFormatted(counter.endsOnMoment().format('ddd, MMMM D, YYYY'));
                     endsOnTimeFormatted(counter.endsOnMoment().format('HH:mm:ss'));
                     startCountdown(counter.endsOnMoment());
@@ -84,6 +86,7 @@
 
         this.title = title;
         this.description = description;
+        this.wallpaper = wallpaper;
         this.countdown = countdownFormatted;
         this.endsOnDate = endsOnDateFormatted;
         this.endsOnTime = endsOnTimeFormatted;
@@ -91,4 +94,4 @@
 
     this.ko.applyBindings(new ViewModel(new this.Counter.load(new this.ds.Store(this.app.config.connectionString.dbName, this.app.config.connectionString.httpDataStore)), eventId), this.$('html')[0]);
 
-}).call(this, this.$.query.GET().e, this.H.Check, this.Counter, this.ko, this.notify, this.moment, this.app.config.counterUpdateInterval, this.Sharing);
+}).call(this, this.$.query.GET().e, this.H.Check, this.Counter, this.ko, this.notify, this.moment, this.app.config.counterUpdateInterval, this.Sharing, this.app.config.defaultWallpaper);
