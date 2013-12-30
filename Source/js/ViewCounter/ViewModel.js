@@ -1,4 +1,4 @@
-﻿(function (eventId, chk, useCase, ko, notify, moment, defaultInterval, undefined) {
+﻿(function (eventId, chk, useCase, ko, notify, moment, defaultInterval, sharing, undefined) {
     'use strict';
 
     function momentUtc() {
@@ -74,6 +74,9 @@
                     endsOnDateFormatted(counter.endsOnMoment().format('ddd, MMMM D, YYYY'));
                     endsOnTimeFormatted(counter.endsOnMoment().format('HH:mm:ss'));
                     startCountdown(counter.endsOnMoment());
+                    new sharing.SocialShare()
+                        .includeTwitter()
+                        .includeFacebookShare();
                 });
         }
 
@@ -88,4 +91,4 @@
 
     this.ko.applyBindings(new ViewModel(new this.Counter.load(new this.ds.Store(this.app.config.connectionString.dbName, this.app.config.connectionString.httpDataStore)), eventId), this.$('html')[0]);
 
-}).call(this, this.$.query.GET().e, this.H.Check, this.Counter, this.ko, this.notify, this.moment, this.app.config.counterUpdateInterval);
+}).call(this, this.$.query.GET().e, this.H.Check, this.Counter, this.ko, this.notify, this.moment, this.app.config.counterUpdateInterval, this.Sharing);

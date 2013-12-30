@@ -12,7 +12,7 @@
             if ($('#twitter-wjs').length) {
                 return;
             }
-            $('head')
+            $('body')
                 .append('<script id="twitter-wjs" src="' + protocol + '://platform.twitter.com/widgets.js"></script>');
 
             return self;
@@ -23,7 +23,8 @@
             if ($('#facebook-jssdk').length) {
                 return;
             }
-            $('head')
+
+            $('body')
                 .append('<div id="fb-root"></div>')
                 .append('<script id="facebook-jssdk" src="' + protocol + '://connect.facebook.net/en_US/all.js#xfbml=1"></script>');
 
@@ -34,8 +35,7 @@
         this.includeFacebookShare = loadFacebookShareButtonApi;
     }
 
-    new SocialShare()
-        .includeTwitter()
-        .includeFacebookShare();
+    this.Sharing = this.Sharing || {};
+    this.Sharing.SocialShare = SocialShare;
 
 }).call(this, this.$);
