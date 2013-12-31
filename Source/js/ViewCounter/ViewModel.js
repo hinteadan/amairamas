@@ -78,7 +78,8 @@
                     startCountdown(counter.endsOnMoment());
                     new sharing.SocialShare()
                         .includeTwitter()
-                        .includeFacebookShare();
+                        .includeFacebookShare()
+                        .includeGooglePlusShare();
                 });
         }
 
