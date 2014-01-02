@@ -166,8 +166,8 @@
         function generateTileGroups(searchResults) {
             /// <param name='searchResults' type='Array' elementType='ResultModel' />
             searchResults.sort(function (a, b) {
-                return a.counter.endsOnAsUnix < b.counter.endsOnAsUnix ? 1 :
-                    a.counter.endsOnAsUnix > b.counter.endsOnAsUnix ? -1 : 0;
+                return a.counter.endsOnAsUnix > b.counter.endsOnAsUnix ? 1 :
+                    a.counter.endsOnAsUnix < b.counter.endsOnAsUnix ? -1 : 0;
             });
             if (searchResults.length <= 6) {
                 return generateLargeTiles(searchResults);

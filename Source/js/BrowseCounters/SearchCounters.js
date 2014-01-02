@@ -1,8 +1,13 @@
-﻿(function (query, model, chk, undefined) {
+﻿(function (query, model, chk, ds, moment, undefined) {
     'use strict';
 
     function isFunction(f) {
         return typeof (f) === 'function';
+    }
+
+    function momentUtc() {
+        var now = moment();
+        return moment.utc([now.year(), now.month(), now.date(), now.hour(), now.minute(), now.second()]);
     }
 
     function SearchCounters(store) {
@@ -34,6 +39,7 @@
 
             query
                 .findAllFrom(store)
+                .where('endsOnAsUnix')(ds.is.HigherThan)(momentUtc().unix())
                 .then(function (result) {
                     /// <param name='result' type='DataStore.OperationResult' />
                     if (doThisOnCallback) {
@@ -52,4 +58,4 @@
     this.Counter = this.Counter || {};
     this.Counter.search = SearchCounters;
 
-}).call(this, this.Counter.Query, this.model, this.H.Check);
+}).call(this, this.Counter.Query, this.model, this.H.Check, this.DataStore, this.moment);
