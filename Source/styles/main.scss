@@ -17,6 +17,10 @@ body, h1, h2, h3, h4, h5, h6 {
     height: 200px;
 }
 
+.resize-vertical {
+    resize: vertical;
+}
+
 table.calendar > tbody > tr > td {
     width: 14%;
     height: 50px;

@@ -70,6 +70,7 @@
         this.minute = ko.observable(now.minute());
         this.second = ko.observable(now.second());
         this.title = ko.observable('');
+        this.description = ko.observable('');
         this.wallpaperUrl = ko.observable(null);
 
         this.years = ko.observableArray(_.range(this.year(), this.year() + yearsToShow));
@@ -97,7 +98,7 @@
             {
                 var c = counter
                     .addTo(dataStore)
-                    .having(eventMoment.toDate(), this.title());
+                    .having(eventMoment.toDate(), this.title(), chk.isEmpty(this.description()) ? undefined : this.description());
                 if(isUrlStringValid(this.wallpaperUrl())){
                     c = c.andDetails(this.wallpaperUrl());
                 }
