@@ -154,6 +154,17 @@ body.event, html.event {
     right: 0px;
 }
 
+.footer-global {
+    width: 100%;
+    opacity: 0.25;
+}
+.footer-global a {
+    color: #dcf5fb;
+}
+.footer-global:hover {
+    opacity: inherit;
+}
+
 .container-relative {
     position: relative;
     height: 100%;
