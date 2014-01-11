@@ -295,6 +295,10 @@ module.exports = function (grunt) {
                     {
                         src: ['build\\js\\appcore.js'],
                         dest: 'build\\js\\appcore.js'
+                    },
+                    {
+                        src: ['build\\Web.config'],
+                        dest: 'build\\Web.config'
                     }
                 ]
             }
@@ -322,8 +326,8 @@ module.exports = function (grunt) {
         'cssmin',
         'concat',
         'uglify',
-        'replace:appConfig',
         'copy',
+        'replace:appConfig',
         'rev',
         'usemin'
     ]);
