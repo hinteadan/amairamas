@@ -249,6 +249,22 @@ module.exports = function (grunt) {
                         src: [
                             '*'
                         ]
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bin',
+                        dest: 'build/bin',
+                        src: [
+                            '*'
+                        ]
+                    },
+                    {
+                        expand: true,
+                        cwd: '',
+                        dest: 'build',
+                        src: [
+                            'Web.config'
+                        ]
                     }
                 ]
             }
