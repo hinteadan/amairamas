@@ -38,32 +38,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrawlyCommon">
-      <HintPath>..\packages\H.CrawlySuite.1.0.0\lib\net45\CrawlyCommon.dll</HintPath>
+    <Reference Include="CrawlyCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\H.CrawlySuite.1.0.1\lib\net45\CrawlyCommon.dll</HintPath>
     </Reference>
-    <Reference Include="CrawlyContentProcessor">
-      <HintPath>..\packages\H.CrawlySuite.1.0.0\lib\net45\CrawlyContentProcessor.dll</HintPath>
+    <Reference Include="CrawlyContentProcessor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\H.CrawlySuite.1.0.1\lib\net45\CrawlyContentProcessor.dll</HintPath>
     </Reference>
-    <Reference Include="CrawlyHttpHandler">
-      <HintPath>..\packages\H.CrawlySuite.1.0.0\lib\net45\CrawlyHttpHandler.dll</HintPath>
+    <Reference Include="CrawlyHttpHandler, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\H.CrawlySuite.1.0.1\lib\net45\CrawlyHttpHandler.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -79,6 +68,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventDetailsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>
