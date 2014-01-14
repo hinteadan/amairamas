@@ -265,6 +265,14 @@ module.exports = function (grunt) {
                         src: [
                             'Web.config'
                         ]
+                    },
+                    {
+                        expand: true,
+                        cwd: '',
+                        dest: 'build',
+                        src: [
+                            '*.html.crawlable'
+                        ]
                     }
                 ]
             }
