@@ -2,7 +2,6 @@
   "name": "amairamas",
   "version": "0.0.0",
   "dependencies": {
-	
+    "jasmine": "~2.3.0"
   }
 }
-
