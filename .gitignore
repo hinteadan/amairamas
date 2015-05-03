@@ -6,6 +6,8 @@ tmp
 app/bower_components
 bower_components
 app/components
+app/lib
+lib
 components
 reports/
 build
