@@ -42,6 +42,14 @@
             expect(formatTime(new Date().getTime() - 59 * 60 * 1000)).toEqual({ time: 59, unit: 'm', past: true });
         });
 
+        it('displays number of hours when span is 1 to 23 hours', function () {
+            expect(formatTime(new Date().getTime() + 60 * 60 * 1000)).toEqual({ time: 1, unit: 'h', past: false });
+            expect(formatTime(new Date().getTime() - 60 * 60 * 1000)).toEqual({ time: 1, unit: 'h', past: true });
+
+            expect(formatTime(new Date().getTime() + 23 * 60 * 60 * 1000)).toEqual({ time: 23, unit: 'h', past: false });
+            expect(formatTime(new Date().getTime() - 23 * 60 * 60 * 1000)).toEqual({ time: 23, unit: 'h', past: true });
+        });
+
     });
 
 })();
