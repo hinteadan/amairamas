@@ -2,8 +2,6 @@
 
     'use strict';
 
-    var timestampNow = 0;
-
     describe('Time formatter', function () {
 
         it('displays number of seconds when span is 59 seconds or less', function () {
