@@ -281,11 +281,11 @@ module.exports = function (grunt) {
 
         ngtemplates: {
             app: {
-                src: ['scripts/**/*.tmpl.html'],
+                src: ['js/**/*.tmpl.html'],
                 cwd: '<%= yeoman.app %>',
                 dest: '.tmp/templates.js',
                 options: {
-                    module: 'hang-out',
+                    module: 'amr',
                     htmlmin: {
                         collapseWhitespace: true,
                         collapseBooleanAttributes: true
