@@ -2,6 +2,7 @@
   "name": "amairamas",
   "version": "2.0.0",
   "dependencies": {
-    "jasmine": "~2.3.0"
+    "jasmine": "~2.3.0",
+    "angular": "~1.3.15"
   }
 }
