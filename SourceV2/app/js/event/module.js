@@ -1,10 +1,10 @@
 ﻿(function (ng) {
     'use strict';
 
-    ng.module('amr', ['ng', 'ngRoute', 'event'])
+    ng.module('event', ['ng', 'ngRoute'])
     .config(['$routeProvider', function ($route) {
         $route
-            .otherwise('/test');
+            .when('/:id', { templateUrl: 'js/event/event.tmpl.html' })
     }]);
 
 })(this.angular);
