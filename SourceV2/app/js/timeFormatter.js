@@ -8,6 +8,10 @@
             diff = Math.abs(timestamp - now),
             unit = units[0];
 
+        if (diff < 1000) {
+            return { time: 0, unit: 's', past: timestamp <= now };
+        }
+
         for (var i = 0; i < units.length; i++) {
             if (Math.floor(diff / unitBases[i]) === 0) {
                 break;

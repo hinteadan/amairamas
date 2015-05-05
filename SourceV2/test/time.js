@@ -54,6 +54,11 @@
             expect(formatTime(new Date().getTime() - 111 * 12 * 30 * 24 * 60 * 60 * 1000)).toEqual({ time: 111, unit: 'y', past: true });
         });
 
+        it('displays zero seconds if span is less than a second', function () {
+            expect(formatTime(new Date().getTime() + 500)).toEqual({ time: 0, unit: 's', past: false });
+            expect(formatTime(new Date().getTime() - 500)).toEqual({ time: 0, unit: 's', past: true });
+        });
+
     });
 
 })(H.formatTime);
