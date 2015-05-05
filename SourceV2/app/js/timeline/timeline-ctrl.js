@@ -9,8 +9,11 @@
         }
 
         function textForEvent(evt) {
-            var amr = time(evt.timestamp);
-            return amr.time + ' ' + unitLabel.for(amr.unit) + ' ' + (amr.past ? ' since it happened' : ' until it begins') + '. <a href="#/' + evt.id + '">View Countdown</a>.';
+            var amr = time(evt.timestamp),
+                unitLabels = unitLabel.withPluralsFor(amr.unit),
+                unit = unitLabels[amr.time] || unitLabels.other;
+
+            return amr.time + ' ' + unit  + ' ' + (amr.past ? ' since it happened' : ' until it begins') + '. <a href="#/' + evt.id + '">View Countdown</a>.';
         }
 
         function convertEventToTimelineEntry(evt) {
