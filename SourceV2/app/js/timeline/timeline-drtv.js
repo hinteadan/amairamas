@@ -34,6 +34,7 @@
 
                 createTimeline({
                     type: 'timeline',
+                    font: 'default',
                     width: '100%',
                     height: '100%',
                     source: $s.source,
