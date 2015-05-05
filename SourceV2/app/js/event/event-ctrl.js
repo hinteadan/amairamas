@@ -5,7 +5,7 @@
 
         var event = events.single(Number($p.id)) || {},
             refreshInterval = {
-                s: 1000,
+                s: 250,
                 m: 1000,
                 h: 1000 * 60,
                 d: 1000 * 60 * 60,
