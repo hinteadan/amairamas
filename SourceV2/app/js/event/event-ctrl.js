@@ -25,6 +25,7 @@
 
             $s.time = amr.time;
             $s.unit = unit + ' ' + (amr.past ? ' since it happened' : ' until it begins');
+            $s.isPast = amr.past;
             return amr;
         }
 
@@ -32,14 +33,13 @@
             var amr = refreshCountdown(),
                 nextRefreshIn = refreshInterval[amr.unit] || 1000;
 
-            console.log(nextRefreshIn);
-
             $t(runRefreshCycle, nextRefreshIn);
         }
 
         $s.title = event.label;
         $s.time = '';
         $s.unit = '';
+        $s.isPast = false;
 
         runRefreshCycle();
     }]);

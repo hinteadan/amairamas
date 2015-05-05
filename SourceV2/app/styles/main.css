@@ -44,3 +44,7 @@ h1 {
 
     cursor: default;
 }
+
+.expired {
+    opacity: 0.15;
+}

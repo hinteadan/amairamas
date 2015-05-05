@@ -15,7 +15,7 @@
 
         function generateEvents() {
             for (var i = 0; i < maxEvents; i++) {
-                events.push(new Event(new Date().getTime() + Math.round(Math.random() * maxEvents * 2  * 1000)));
+                events.push(new Event(new Date().getTime() + Math.round(Math.random() * maxEvents * 30 * 1000)));
             }
         }
 
