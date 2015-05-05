@@ -4,7 +4,7 @@
     ng.module('event', ['ng', 'ngRoute'])
     .config(['$routeProvider', function ($route) {
         $route
-            .when('/:id', { templateUrl: 'js/event/event.tmpl.html' })
+            .when('/:id', { templateUrl: 'js/event/event.tmpl.html', controller: 'event-ctrl' });
     }]);
 
 })(this.angular);
