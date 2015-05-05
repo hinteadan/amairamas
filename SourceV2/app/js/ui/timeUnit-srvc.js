@@ -12,12 +12,12 @@
             y: 'year(s)'
         },
             labelsWithPlurals = {
-                s: { '0': 'now', '1': 'second', 'other': 'seconds' },
-                m: { '0': 'now', '1': 'minute', 'other': 'minutes' },
-                h: { '0': 'now', '1': 'hour', 'other': 'hours' },
-                d: { '0': 'now', '1': 'day', 'other': 'days' },
-                M: { '0': 'now', '1': 'month', 'other': 'months' },
-                y: { '0': 'now', '1': 'year', 'other': 'years' }
+                s: { '1': 'second', 'other': 'seconds' },
+                m: { '1': 'minute', 'other': 'minutes' },
+                h: { '1': 'hour', 'other': 'hours' },
+                d: { '1': 'day', 'other': 'days' },
+                M: { '1': 'month', 'other': 'months' },
+                y: { '1': 'year', 'other': 'years' }
             };
 
         this.for = function (unit) {
