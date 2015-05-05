@@ -22,6 +22,10 @@
             return events;
         };
 
+        this.recent = function () {
+            return events[0];
+        };
+
         generateEvents();
 
     }]);
