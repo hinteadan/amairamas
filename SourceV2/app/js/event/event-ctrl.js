@@ -1,10 +1,15 @@
 ﻿(function (ng, time) {
     'use strict';
 
-    ng.module('event').controller('event-ctrl', ['$scope', '$routeParams', 'unitLabel', 'dummyEventsRepository', function ($s, $p, unitLabel, events) {
+    ng.module('event').controller('event-ctrl', ['$scope', '$location', '$routeParams', 'unitLabel', 'dummyEventsRepository', function ($s, $l, $p, unitLabel, events) {
 
-        var event = events.single(Number($p.id)),
+        var event = events.single(Number($p.id)) || {},
             amr = time(event.id);
+
+        if (!event.id) {
+            $l.path('/');
+            return;
+        }
 
         $s.title = event.label;
         $s.time = amr.time;
