@@ -4,6 +4,7 @@
     function Event(timestamp, label)
     {
         this.timestamp = timestamp || new Date().getTime();
+        this.id = this.timestamp;
         this.label = label || 'Unknown event ' + this.timestamp;
     }
 

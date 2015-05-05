@@ -8,6 +8,9 @@
 /// <reference path="~/app/lib/TimelineJS/build/js/timeline.js" />
 /// <reference path="~/app/lib/TimelineJS/build/js/storyjs-embed.js" />
 
+/// <reference path="~/app/js/ui/module.js" />
+/// <reference path="~/app/js/ui/timeUnit-srvc.js" />
+
 
 /// <reference path="~/app/js/repository/module.js" />
 /// <reference path="~/app/js/repository/dummy.js" />

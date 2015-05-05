@@ -1,11 +1,16 @@
-﻿(function (ng, _) {
+﻿(function (ng, _, time) {
     'use strict';
 
-    ng.module('timeline').controller('timeline-ctrl', ['$scope', 'dummyEventsRepository', function ($s, events) {
+    ng.module('timeline').controller('timeline-ctrl', ['$scope', 'unitLabel', 'dummyEventsRepository', function ($s, unitLabel, events) {
 
         function timestampToTimelineDate(timestamp) {
             var d = new Date(timestamp);
             return d.getFullYear() + ',' + (d.getMonth() + 1) + ',' + d.getDate() /*+ ',' + d.getHours() + ',' + d.getMinutes() + ',' + d.getSeconds()*/;
+        }
+
+        function textForEvent(evt) {
+            var amr = time(evt.timestamp);
+            return amr.time + ' ' + unitLabel.for(amr.unit) + ' ' + (amr.past ? ' since it happened' : ' until it begins ') + '. <a href="#/' + evt.id + '">View Countdown</a>.';
         }
 
         function convertEventToTimelineEntry(evt) {
@@ -13,7 +18,7 @@
                 'startDate': timestampToTimelineDate(evt.timestamp),
                 'endDate': timestampToTimelineDate(evt.timestamp),
                 'headline': evt.label,
-                'text': ''
+                'text': textForEvent(evt)
             };
         }
 
@@ -23,7 +28,7 @@
                 timeline: {
                     headline: main.headline,
                     type: 'default',
-                    text: '',
+                    text: textForEvent(events.recent()),
                     date: _.map(events.all(), convertEventToTimelineEntry)
                 }
             };
@@ -33,4 +38,4 @@
 
     }]);
 
-})(this.angular, this._);
+})(this.angular, this._, this.H.formatTime);
