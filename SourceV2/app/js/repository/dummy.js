@@ -1,4 +1,4 @@
-﻿(function (ng) {
+﻿(function (ng, _) {
     'use strict';
 
     function Event(timestamp, label)
@@ -27,8 +27,12 @@
             return events[0];
         };
 
+        this.single = function (id) {
+            return _.find(events, { id: id });
+        };
+
         generateEvents();
 
     }]);
 
-})(this.angular);
+})(this.angular, this._);

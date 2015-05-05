@@ -10,7 +10,7 @@
 
         function textForEvent(evt) {
             var amr = time(evt.timestamp);
-            return amr.time + ' ' + unitLabel.for(amr.unit) + ' ' + (amr.past ? ' since it happened' : ' until it begins ') + '. <a href="#/' + evt.id + '">View Countdown</a>.';
+            return amr.time + ' ' + unitLabel.for(amr.unit) + ' ' + (amr.past ? ' since it happened' : ' until it begins') + '. <a href="#/' + evt.id + '">View Countdown</a>.';
         }
 
         function convertEventToTimelineEntry(evt) {

@@ -1,12 +1,15 @@
-﻿(function (ng) {
+﻿(function (ng, time) {
     'use strict';
 
-    ng.module('event').controller('event-ctrl', ['$scope', function ($s) {
+    ng.module('event').controller('event-ctrl', ['$scope', '$routeParams', 'unitLabel', 'dummyEventsRepository', function ($s, $p, unitLabel, events) {
 
-        $s.title = 'Time to Wimbledon';
-        $s.time = 69;
-        $s.unit = 'days';
+        var event = events.single(Number($p.id)),
+            amr = time(event.id);
+
+        $s.title = event.label;
+        $s.time = amr.time;
+        $s.unit = unitLabel.for(amr.unit) + ' ' + (amr.past ? ' since it happened' : ' until it begins');
 
     }]);
 
-})(this.angular);
+})(this.angular, this.H.formatTime);
