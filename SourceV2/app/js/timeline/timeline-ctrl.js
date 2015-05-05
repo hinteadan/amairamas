@@ -23,12 +23,9 @@
         }
 
         function createTimelineData() {
-            var main = convertEventToTimelineEntry(events.recent());
             return {
                 timeline: {
-                    headline: main.headline,
                     type: 'default',
-                    text: textForEvent(events.recent()),
                     date: _.map(events.all(), convertEventToTimelineEntry)
                 }
             };
