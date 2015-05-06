@@ -21,7 +21,12 @@
                 'startDate': timestampToTimelineDate(evt.timestamp),
                 'endDate': timestampToTimelineDate(evt.timestamp),
                 'headline': evt.label,
-                'text': textForEvent(evt)
+                'text': textForEvent(evt),
+                'asset': {
+                    'media': 'http://www.recognos.ro',
+                    'credit': 'by Recognos',
+                    'caption': 'Recognos stuff'
+                }
             };
         }
 
