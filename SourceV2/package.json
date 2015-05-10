@@ -20,7 +20,6 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-ftp-deploy": "^0.1.10",
     "grunt-karma": "^0.10.1",
-    "grunt-mocha": "^0.4.10",
     "grunt-newer": "^1.1.0",
     "grunt-replace": "^0.9.1",
     "grunt-rev": "~0.1.0",
