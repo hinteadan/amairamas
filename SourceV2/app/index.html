@@ -5,9 +5,11 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <!-- build:css styles/styles.css -->
+    <!-- build:css styles/vendor.css -->
     <link href="lib/TimelineJS/build/css/timeline.css" rel="stylesheet" />
+    <!-- endbuild -->
 
+    <!-- build:css(.tmp) styles/main.css -->
     <link href="styles/timeline.css" rel="stylesheet" />
     <link href="styles/main.css" rel="stylesheet" />
     <!-- endbuild -->
@@ -18,7 +20,7 @@
 
 </body>
 
-<!-- build:js js/lib.js -->
+<!-- build:js scripts/lib.js -->
 <script src="lib/lodash/lodash.js"></script>
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular-route/angular-route.js"></script>
@@ -27,22 +29,22 @@
 <script src="lib/TimelineJS/build/js/storyjs-embed.js"></script>
 <!-- endbuild -->
 
-<!-- build:js js/app.js -->
-<script src="js/timeFormatter.js"></script>
+<!-- build:js({app,.tmp}) scripts/app.js -->
+<script src="scripts/timeFormatter.js"></script>
 
-<script src="js/ui/module.js"></script>
-<script src="js/ui/timeUnit-srvc.js"></script>
+<script src="scripts/ui/module.js"></script>
+<script src="scripts/ui/timeUnit-srvc.js"></script>
 
-<script src="js/event/module.js"></script>
-<script src="js/event/event-ctrl.js"></script>
+<script src="scripts/event/module.js"></script>
+<script src="scripts/event/event-ctrl.js"></script>
 
-<script src="js/repository/module.js"></script>
-<script src="js/repository/dummy.js"></script>
+<script src="scripts/repository/module.js"></script>
+<script src="scripts/repository/dummy.js"></script>
 
-<script src="js/timeline/module.js"></script>
-<script src="js/timeline/timeline-ctrl.js"></script>
-<script src="js/timeline/timeline-drtv.js"></script>
+<script src="scripts/timeline/module.js"></script>
+<script src="scripts/timeline/timeline-ctrl.js"></script>
+<script src="scripts/timeline/timeline-drtv.js"></script>
 
-<script src="js/app.js"></script>
+<script src="scripts/app.js"></script>
 <!-- endbuild -->
 </html>
