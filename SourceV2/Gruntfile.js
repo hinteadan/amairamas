@@ -331,6 +331,23 @@ module.exports = function (grunt) {
               'svgmin'
             ]
         },
+
+        replace: {
+            dist: {
+                options: {
+                    patterns: [
+                        {
+                            match: /\.constant\("storeUrl"\,"http\:\/\/localhost\/HttpDataStore\/"\)/gi,
+                            replacement: '.constant("storeUrl","http://h-httpstore.azurewebsites.net/")'
+                        }
+                    ]
+                },
+                files: [
+                    { expand: true, flatten: true, src: ['<%= config.dist %>/scripts/*.js'], dest: '<%= config.dist %>/scripts/' }
+                ]
+            }
+        },
+
         karma: {
             unit: {
                 configFile: 'karma.conf.js',
@@ -390,7 +407,8 @@ module.exports = function (grunt) {
       'copy:dist',
       'rev',
       'usemin',
-      'htmlmin'
+      'htmlmin',
+      'replace:dist'
     ]);
 
     grunt.registerTask('default', [
