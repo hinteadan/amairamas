@@ -20,7 +20,8 @@
             replace: false,
             transclude: false,
             scope: {
-                source: '=timeline'
+                source: '=timeline',
+                options: '='
             },
             link: function ($s, $e, $a) {
                 /*jshint unused: false*/
@@ -33,16 +34,23 @@
                 //}, 'UPDATE');
 
                 $s.$watch('source', function (timelineData) {
+                    var opt = $s.options || {};
+
                     if (!timelineData || !timelineData.timeline) {
                         return;
                     }
+
                     createTimeline({
                         type: 'timeline',
                         font: 'default',
                         width: '100%',
                         height: '100%',
                         source: timelineData,
-                        embed_id: id // jshint ignore:line
+                        embed_id: id,// jshint ignore:line
+                        start_at_end: ng.isDefined(opt.start_at_end) ? opt.start_at_end : false,// jshint ignore:line
+                        start_at_slide: ng.isDefined(opt.start_at_slide) ? opt.start_at_slide : 0,// jshint ignore:line
+                        start_zoom_adjust: ng.isDefined(opt.start_zoom_adjust) ? opt.start_zoom_adjust : 0,// jshint ignore:line
+                        hash_bookmark: ng.isDefined(opt.hash_bookmark) ? opt.hash_bookmark : false// jshint ignore:line
                     });
                 });
             }

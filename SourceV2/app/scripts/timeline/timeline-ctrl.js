@@ -1,7 +1,7 @@
 ﻿(function (ng, _, time) {
     'use strict';
 
-    ng.module('timeline').controller('timeline-ctrl', ['$scope', 'unitLabel', 'hangOutEvents', function ($s, unitLabel, events) {
+    ng.module('timeline').controller('timeline-ctrl', ['$scope', '$q', 'unitLabel', 'hangOutEvents', function ($s, $q, unitLabel, events) {
 
         function timestampToTimelineDate(timestamp) {
             var d = new Date(timestamp);
@@ -31,17 +31,23 @@
         }
 
         function createTimelineData() {
-            events.all().then(function (events) {
-                $s.events = {
-                    timeline: {
-                        type: 'default',
-                        date: _.map(events, convertEventToTimelineEntry)
-                    }
-                };
-            });
+
+            $q.all({ all: events.all(), recent: events.recent() })
+                .then(function (hangoutEvents) {
+                    $s.options = {
+                        start_at_slide: _.indexOf(hangoutEvents.all, hangoutEvents.recent)// jshint ignore:line
+                    };
+                    $s.events = {
+                        timeline: {
+                            type: 'default',
+                            date: _.map(hangoutEvents.all, convertEventToTimelineEntry)
+                        }
+                    };
+                });
         }
 
         $s.events = null;
+        $s.options = null;
 
         createTimelineData();
 
