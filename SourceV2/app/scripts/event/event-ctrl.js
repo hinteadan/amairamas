@@ -1,7 +1,7 @@
 ﻿(function (ng, time) {
     'use strict';
 
-    ng.module('event').controller('event-ctrl', ['$scope', '$location', '$routeParams', '$timeout', 'unitLabel', 'dummyEventsRepository', function ($s, $l, $p, $t, unitLabel, events) {
+    ng.module('event').controller('event-ctrl', ['$scope', '$location', '$routeParams', '$timeout', 'unitLabel', 'hangOutEvents', function ($s, $l, $p, $t, unitLabel, events) {
 
         var event = events.single(Number($p.id)) || {},
             refreshInterval = {

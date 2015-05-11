@@ -32,13 +32,18 @@
                 //    console.log(arguments);
                 //}, 'UPDATE');
 
-                createTimeline({
-                    type: 'timeline',
-                    font: 'default',
-                    width: '100%',
-                    height: '100%',
-                    source: $s.source,
-                    embed_id: id // jshint ignore:line
+                $s.$watch('source', function (timelineData) {
+                    if (!timelineData || !timelineData.timeline) {
+                        return;
+                    }
+                    createTimeline({
+                        type: 'timeline',
+                        font: 'default',
+                        width: '100%',
+                        height: '100%',
+                        source: timelineData,
+                        embed_id: id // jshint ignore:line
+                    });
                 });
             }
         };

@@ -22,6 +22,7 @@
 
 /// <reference path="~/app/scripts/repository/module.js" />
 /// <reference path="~/app/scripts/repository/dummy.js" />
+/// <reference path="~/app/scripts/repository/hang-out-events.js" />
 
 /// <reference path="~/app/scripts/event/module.js" />
 
