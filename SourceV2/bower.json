@@ -9,6 +9,7 @@
     "jquery": "~2.1.4",
     "lodash": "~3.8.0",
     "h.store": "https://github.com/hinteadan/h.dataStore.client.js.git#v1.1.0",
-    "angular-md5": "~0.1.7"
+    "angular-md5": "~0.1.7",
+    "angular-loading-bar": "~0.7.1"
   }
 }

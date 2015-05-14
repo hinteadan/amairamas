@@ -9,6 +9,7 @@
 /// <reference path="~/app/lib/TimelineJS/build/js/timeline.js" />
 /// <reference path="~/app/lib/TimelineJS/build/js/storyjs-embed.js" />
 /// <reference path="~/app/lib/h.store/h.dataStore.js" />
+/// <reference path="~/app/lib/angular-loading-bar/build/loading-bar.js" />
 
 /// <reference path="~/app/scripts/hang-out-core/module.js" />
 /// <reference path="~/app/scripts/hang-out-core/model.js" />

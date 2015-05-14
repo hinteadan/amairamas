@@ -1,7 +1,7 @@
 ﻿(function (ng, _, time) {
     'use strict';
 
-    ng.module('timeline').controller('timeline-ctrl', ['$scope', '$q', 'unitLabel', 'hangOutEvents', function ($s, $q, unitLabel, events) {
+    ng.module('timeline').controller('timeline-ctrl', ['$scope', '$q', 'cfpLoadingBar', 'unitLabel', 'hangOutEvents', function ($s, $q, load, unitLabel, events) {
 
         function timestampToTimelineDate(timestamp) {
             var d = new Date(timestamp);
@@ -35,6 +35,8 @@
 
         function createTimelineData() {
 
+            load.start();
+
             $q.all({ all: events.all(), recent: events.recent() })
                 .then(function (hangoutEvents) {
                     $s.options = {
@@ -47,6 +49,8 @@
                             date: _.map(hangoutEvents.all, convertEventToTimelineEntry)
                         }
                     };
+                }).finally(function () {
+                    load.complete();
                 });
         }
 
@@ -57,4 +61,4 @@
 
     }]);
 
-})(this.angular, this._, this.H.formatTime);
+})(this.angular, this._, this.H.formatTime, this.cfp);
